@@ -969,7 +969,7 @@ class WebFlixApplication extends _reactDefault.default.Component {
 }
 //Finds the root of app
 const container = document.getElementsByClassName('app-container')[0];
-//Render app in toot DOM element
+//Render app in root DOM element
 _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElement(WebFlixApplication), container);
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);

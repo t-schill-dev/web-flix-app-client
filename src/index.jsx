@@ -16,5 +16,5 @@ class WebFlixApplication extends React.Component {
 //Finds the root of app
 const container = document.getElementsByClassName('app-container')[0];
 
-//Render app in toot DOM element
+//Render app in root DOM element
 ReactDOM.render(React.createElement(WebFlixApplication), container);
