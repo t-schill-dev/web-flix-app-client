@@ -946,12 +946,11 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _mainView = require("./components/main-view/main-view");
-var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 var _indexScss = require("./index.scss");
 //Main component
 class WebFlixApplication extends _reactDefault.default.Component {
     render() {
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_mainViewDefault.default, {
+        return(/*#__PURE__*/ _jsxRuntime.jsx(_mainView.MainView, {
             __source: {
                 fileName: "src/index.jsx",
                 lineNumber: 10
@@ -25322,48 +25321,68 @@ $parcel$ReactRefreshHelpers$35bf.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView
+);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MainView extends _reactDefault.default.Component {
+    constructor(){
+        super();
+        this.state = {
+            movies: [
+                {
+                    _id: 1,
+                    Title: 'Inception',
+                    Description: 'desc1...',
+                    ImagePath: '...'
+                },
+                {
+                    _id: 2,
+                    Title: 'The Shawshank Redemption',
+                    Description: 'desc2...',
+                    ImagePath: '...'
+                },
+                {
+                    _id: 3,
+                    Title: 'Gladiator',
+                    Description: 'desc3...',
+                    ImagePath: '...'
+                }
+            ]
+        };
+    }
     render() {
-        return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
+        const movies = this.state.movies;
+        if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+            className: "main-view",
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 18
+            },
+            __self: this,
+            children: "The list is empty"
+        }));
+        else return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "mainview",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 6
+                lineNumber: 21
             },
             __self: this,
-            children: [
-                /*#__PURE__*/ _jsxRuntime.jsx("div", {
+            children: movies.map((movie)=>{
+                return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 7
+                        lineNumber: 23
                     },
                     __self: this,
-                    children: "Inception"
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsx("div", {
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 8
-                    },
-                    __self: this,
-                    children: "The Taxi Driver"
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsx("div", {
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 9
-                    },
-                    __self: this,
-                    children: "The Hangover"
-                })
-            ]
+                    children: movie.Title
+                }));
+            })
         }));
     }
 }
-exports.default = MainView;
 
   $parcel$ReactRefreshHelpers$35bf.postlude(module);
 } finally {
