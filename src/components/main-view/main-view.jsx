@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   render() {
     return (
       <div className="mainview">
@@ -10,4 +10,6 @@ export class MainView extends React.Component {
       </div>
     );
   }
-}
+};
+
+export default MainView;
