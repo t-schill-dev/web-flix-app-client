@@ -25198,7 +25198,8 @@ class MainView extends _reactDefault.default.Component {
                     Description: 'desc3...',
                     ImagePath: '...'
                 }
-            ]
+            ],
+            selectedMovie: null
         };
     }
     render() {
@@ -25207,7 +25208,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 19
+                lineNumber: 20
             },
             __self: this,
             children: "The list is empty"
@@ -25216,14 +25217,14 @@ class MainView extends _reactDefault.default.Component {
             className: "mainview",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 22
+                lineNumber: 23
             },
             __self: this,
             children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                    movieData: movie,
+                    movie: movie,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 23
+                        lineNumber: 24
                     },
                     __self: this
                 }, movie._id)
@@ -25253,7 +25254,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movieData  } = this.props;
+        const { movie  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             __source: {
@@ -25261,7 +25262,7 @@ class MovieCard extends _reactDefault.default.Component {
                 lineNumber: 6
             },
             __self: this,
-            children: movieData.Title
+            children: movie.Title
         }));
     }
 }
