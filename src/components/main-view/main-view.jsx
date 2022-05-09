@@ -11,18 +11,6 @@ export class MainView extends React.Component {
       selectedMovie: null
     }
   }
-  // Fetching movie data
-  componentDidMount() {
-    axios.get('https://web-flix-movies.herokuapp.com/movies')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
 
   setSelectedMovie(newSelectedMovie) {
     this.setState({
@@ -44,6 +32,19 @@ export class MainView extends React.Component {
         }
       </div>
     );
+  }
+
+  // Fetching movie data
+  componentDidMount() {
+    axios.get('https://web-flix-movies.herokuapp.com/movies')
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
 
