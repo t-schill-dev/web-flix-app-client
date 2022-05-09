@@ -1,26 +1,29 @@
 {
-  "name": "web-flix-app-client",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/t-schill-dev/web-flix-app-client.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/t-schill-dev/web-flix-app-client/issues"
-  },
-  "homepage": "https://github.com/t-schill-dev/web-flix-app-client#readme",
-  "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-rc.0"
-  }
+    "name": "web-flix-app-client",
+    "browserslist": "> 0.5%, last 2 versions, not dead",
+    "version": "1.0.0",
+    "description": "",
+    "source": "src/index.html",
+    "scripts": {
+        "start": "parcel src/index.html",
+        "build": "parcel build src/index.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/t-schill-dev/web-flix-app-client.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/t-schill-dev/web-flix-app-client/issues"
+    },
+    "homepage": "https://github.com/t-schill-dev/web-flix-app-client#readme",
+    "dependencies": {
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0"
+    },
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.5.0",
+        "parcel": "^2.5.0"
+    }
 }
