@@ -6,6 +6,6 @@ export class MovieCard extends React.Component {
     {/*Add click event to call back function in MainView to change state */ }
     return <div className="movie-card" onClick={() => {
       onMovieClick(movie);
-    }}  >{movie.Title}</div>
+    }}  >{movie.title}</div>
   }
 }
