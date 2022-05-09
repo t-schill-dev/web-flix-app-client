@@ -10,11 +10,11 @@ export class MovieView extends React.Component {
           <img src={movie.imageUrl} alt="Movie poster" />
         </div>
         <div className="movie-title">
-          <span className="label">Title</span>
+          <span className="label">Title: </span>
           <span className="value">{movie.title}</span>
         </div>
         <div className="movie-description">
-          <span className="label">Description: </span>
+          <span className="label">Plot: </span>
           <span className="value">{movie.plot}</span>
         </div>
         <button onClick={() => { onBackClick(null); }}>Back</button>
