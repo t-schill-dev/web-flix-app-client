@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MainView} from './components/main-view/main-view';
+import { MainView } from './components/main-view/main-view';
 import './index.scss';
 
 //Main component
 class WebFlixApplication extends React.Component {
   render() {
     return (
-     <MainView/>
+      <MainView />
     );
   }
 }
