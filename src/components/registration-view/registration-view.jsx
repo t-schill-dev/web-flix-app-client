@@ -38,3 +38,10 @@ export function RegistrationView(props) {
 
   );
 };
+
+RegistrationView.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  birthday: PropTypes.number
+}
