@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import propTypes from 'prop-types';
+
 
 export class MainView extends React.Component {
   constructor() {
@@ -59,3 +59,11 @@ export class MainView extends React.Component {
       });
   }
 };
+
+MainView.propTypes = {
+  selectedMovie: PropTypes.func,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    password: PropTypes.string
+  })
+}
