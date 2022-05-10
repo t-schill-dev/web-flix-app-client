@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
+import PropTypes from 'prop-types';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import propTypes from 'prop-types';
 
 export class MainView extends React.Component {
   constructor() {
@@ -56,8 +58,4 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
-
-
 };
-
-

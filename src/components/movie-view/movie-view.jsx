@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MovieView extends React.Component {
   render() {
@@ -21,4 +22,8 @@ export class MovieView extends React.Component {
       </div>
     );
   }
+}
+
+MovieView.propTypes = {
+  onBackClick: PropTypes.func.isRequired
 }
