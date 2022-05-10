@@ -15,8 +15,8 @@ export class MovieCard extends React.Component {
 MovieCard.propTypes = {
   movie: PropTypes.exact({
     title: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    runtime: PropTypes.number.isRequired,
+    year: PropTypes.number,
+    runtime: PropTypes.number,
     plot: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     director: PropTypes.shape({
