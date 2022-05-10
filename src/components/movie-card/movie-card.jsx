@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MovieCard extends React.Component {
 
@@ -10,3 +11,21 @@ export class MovieCard extends React.Component {
     }}  >{movie.title}</div>
   }
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.exact({
+    title: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    plot: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    director: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      bio: PropTypes.string.isRequired,
+      birth: PropTypes.number.isRequired,
+    }).isRequired,
+    actors: PropTypes.array.isRequired,
+    genres: PropTypes.array.isRequired
+  }).isRequired,
+  onMovieClick: PropTypes.func.isRequired
+};
