@@ -37,7 +37,7 @@ export class MainView extends React.Component {
       return <div className='main-view' />
     };
     return (
-      <div className="main-view">
+      <div className='main-view'>
         {selectedMovie
           ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
           : movies.map(movie => (
