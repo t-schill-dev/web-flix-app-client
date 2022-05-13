@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MainView } from './components/main-view/main-view';
+import Container from 'react-bootstrap/Container'
 import './index.scss';
 
 //Main component
 class WebFlixApplication extends React.Component {
   render() {
     return (
-      <MainView />
+      <Container>
+        <MainView />
+      </Container>
     );
   }
 }
