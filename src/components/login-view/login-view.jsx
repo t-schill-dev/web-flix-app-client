@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { RegistrationView } from "../registration-view/registration-view";
 
-import { RegistrationView } from '../registration-view/registration-view';
-
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
