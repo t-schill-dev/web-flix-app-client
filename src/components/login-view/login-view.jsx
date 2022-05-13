@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Card, CardGroup, Row, Col, Container } from 'react-bootstrap';
+import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
+import { RegistrationView } from "../registration-view/registration-view";
 
 import { RegistrationView } from '../registration-view/registration-view';
 
@@ -14,9 +15,9 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-  // const handleClick = (e) => {
-  //   return <RegistrationView />
-  // }
+  const handleClick = () => {
+    return <RegistrationView />
+  }
 
   return (
 
@@ -37,7 +38,7 @@ export function LoginView(props) {
               </Form.Group>
             </Form>
             <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            {/*<Button variant='outline-secondary' type='button' onClick={handleClick}>Register here</Button>*/}
+            <Button variant='outline-secondary' type='button' onClick={handleClick}>Register here</Button>
           </Card.Body>
         </Card>
 
