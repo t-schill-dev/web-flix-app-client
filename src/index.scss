@@ -1,20 +1,11 @@
-
-
 $background-color: #1E263D;
 $underline-color: rgba(25, 200, 185, 0.8);
 $favorite-star: #FFD700;
 $buttons-inactive: #E4E4E4;
 $button-hover: rgba(25, 200, 185, 1);
 $text-color: #F7F7F7;
-$font: 'Fredoka', sans-serif;
-
-
-
-.movie-card {
-    cursor: pointer;
-    margin: 10px 0;
-    background-color: rgb(7, 7, 134);
-    color: white;
-    width: 500px;
-    line-height: 2.5rem;
+$font: 'Fredoka',
+sans-serif;
+body {
+    background-color: $background-color;
 }
