@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Form, Button, Card, CardGroup, Row, Col, Container } from 'react-bootstrap';
+
+import { RegistrationView } from '../registration-view/registration-view';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -13,19 +14,36 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
+  // const handleClick = (e) => {
+  //   return <RegistrationView />
+  // }
+
   return (
-    <Form>
-      <Form.Group controlId='formUsername'>
-        <Form.Label>Username:</Form.Label>
-        <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
-      </Form.Group>
-      <Form.Group controlId='formPassword'>
-        <Form.Label>Password:</Form.Label>
-        <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
-      </Form.Group>
-      <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-      <Button variant='outline-secondary' type='button'>Register here</Button>
-    </Form>
+
+    <Container>
+      <Row>
+        <CardGroup>
+          <Card>
+            <Card.Body>
+              <Card.Title> Login</Card.Title>
+              <Form>
+                <Form.Group controlId='formUsername'>
+                  <Form.Label>Username:</Form.Label>
+                  <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId='formPassword'>
+                  <Form.Label>Password:</Form.Label>
+                  <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
+                </Form.Group>
+              </Form>
+              <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
+              {/*<Button variant='outline-secondary' type='button' onClick={handleClick}>Register here</Button>*/}
+            </Card.Body>
+          </Card>
+        </CardGroup>
+      </Row>
+    </Container>
+
   );
 };
 
