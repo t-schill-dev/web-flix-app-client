@@ -7,7 +7,7 @@ export function NavbarView() {
 
   return (
 
-    <Navbar fixed='top' bg="dark" variant='dark' expand="lg">
+    <Navbar id='navbar' fixed='top' bg="dark" variant='dark' expand="lg">
       <Container>
         <Navbar.Brand href="#home">web-flix-movies</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -23,7 +23,7 @@ export function NavbarView() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button id='search-button' variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

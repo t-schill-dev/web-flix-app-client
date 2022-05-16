@@ -1,0 +1,10 @@
+$underline-color: rgba(25, 200, 185, 0.8);
+$text-color: #F7F7F7;
+$button-hover: rgba(25, 200, 185, 1);
+#search-button {
+    border-color: $underline-color;
+    color: $text-color;
+    &:hover {
+        background-color: $button-hover;
+    }
+}

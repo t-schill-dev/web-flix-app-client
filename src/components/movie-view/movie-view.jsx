@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button, Card, Navbar, Nav } from 'react-bootstrap';
+import { NavbarView } from '../navbar-view/navbar-view';
 
 export class MovieView extends React.Component {
   render() {
@@ -8,18 +9,9 @@ export class MovieView extends React.Component {
 
     return (
       <>
-        <Navbar fixed='top' bg="dark" variant='dark' expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">web-flix-movies</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Profile</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+        <Row>
+          <NavbarView />
+        </Row>
         <Container fluid>
           <Row className='movie-view'>
             <Col>

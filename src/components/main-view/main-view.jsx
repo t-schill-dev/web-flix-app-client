@@ -8,7 +8,7 @@ import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { Row, Col, Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
-import { NavbarView } from '../../navbar-view/navbar-view';
+
 
 
 
