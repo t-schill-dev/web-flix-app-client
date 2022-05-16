@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { MainView } from './components/main-view/main-view';
 import Container from 'react-bootstrap/Container'
 import './index.scss';
+import { Navbar } from 'react-bootstrap';
 
 //Main component
 class WebFlixApplication extends React.Component {

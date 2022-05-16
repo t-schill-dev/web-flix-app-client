@@ -5,7 +5,7 @@ import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 
 
 
@@ -40,23 +40,47 @@ export class MainView extends React.Component {
     };
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
-      <Row className='main-view justify-content-md-center'>
-        {selectedMovie
-          ? (
-            <Col md={8}>
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          )
-          : movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
-            </Col>
-          ))
-        }
-      </Row>
-    );
-  }
 
+      <>
+        <Navbar bg="dark" variant='dark' expand="lg">
+          <Container>
+            <Navbar.Brand href="#home">web-flix-movies</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#link">Profile</Nav.Link>
+              </Nav>
+              <Form className="d-flex">
+                <FormControl
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
+        <Row className='main-view justify-content-md-center'>
+          {selectedMovie
+            ? (
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            )
+            : movies.map(movie => (
+              <Col md={3}>
+                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+              </Col>
+            ))
+          }
+        </Row>
+      </>
+    )
+  };
   // Fetching movie data
   componentDidMount() {
     axios.get('https://web-flix-movies.herokuapp.com/movies')
