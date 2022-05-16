@@ -13,10 +13,6 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-  const handleClick = () => {
-    return <RegistrationView />
-  }
-
   return (
 
     <Container>
@@ -36,7 +32,7 @@ export function LoginView(props) {
               </Form.Group>
             </Form>
             <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            <Button variant='outline-secondary' type='button' onClick={handleClick}>Register here</Button>
+            <Button variant='outline-secondary' type='button'>Register here</Button>
           </Card.Body>
         </Card>
 
