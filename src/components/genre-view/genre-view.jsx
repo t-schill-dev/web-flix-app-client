@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Button, Nav, Navbar, Carousel } from 'react-bootstrap';
+import { NavbarView } from '../navbar-view/navbar-view';
 
 
 export class GenreView extends React.Component {
@@ -8,19 +9,10 @@ export class GenreView extends React.Component {
     const { movie } = this.props;
     return (
       <>
-        <Navbar fixed='top' bg="dark" variant='dark' expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">web-flix-movies</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Profile</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
         <Container>
+          <Row>
+            <NavbarView />
+          </Row>
           <Row className='movie-genres'>
             <Col>
               <span className='selectedGenre'>{movie.genres.map((genre) => genre + ', ')}</span>

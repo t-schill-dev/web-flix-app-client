@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { NavbarView } from '../navbar-view/navbar-view'
+import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { Row, Col, Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
+import { NavbarView } from '../../navbar-view/navbar-view';
 
 
 
@@ -42,27 +45,9 @@ export class MainView extends React.Component {
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
 
       <>
-        <Navbar bg="dark" variant='dark' expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">web-flix-movies</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Profile</Nav.Link>
-              </Nav>
-              <Form className="d-flex">
-                <FormControl
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-              </Form>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+        <Row>
+          <NavbarView />
+        </Row>
 
         <Row className='main-view justify-content-md-center'>
           {selectedMovie
