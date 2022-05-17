@@ -1,0 +1,30 @@
+$background-color: #1E263D;
+$button-color: rgba(25, 200, 185, 0.8);
+$favorite-star: #FFD700;
+$buttons-inactive: #E4E4E4;
+$button-hover: rgba(25, 200, 185, 1);
+$text-color: #F7F7F7;
+$dark-text: #1E263D;
+$font: 'Fredoka';
+.view-container {
+    height: 100vh;
+    background-color: #E4E4E4;
+}
+
+#profile-form {
+    margin-top: 100px;
+    background-color: $background-color;
+    color: $text-color;
+    font-family: $font;
+    width: 50%;
+}
+
+#update-btn_primary {
+    background-color: $button-color;
+    border-color: #1E263D;
+    color: $dark-text;
+    margin-top: 10px;
+    &:hover {
+        background-color: $button-hover;
+    }
+}
