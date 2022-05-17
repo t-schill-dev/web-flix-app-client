@@ -52,7 +52,7 @@ export class MainView extends React.Component {
           {selectedMovie
             ? (
               <Row className='main-view justify-content-md-center'>
-                <Col md={8} >
+                <Col  >
                   <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                 </Col>
               </Row>
