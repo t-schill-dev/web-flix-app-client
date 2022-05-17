@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { RegistrationView } from "../registration-view/registration-view";
+import { NavbarView } from '../navbar-view/navbar-view';
+import './login-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -15,13 +17,15 @@ export function LoginView(props) {
 
   return (
 
-    <Container>
+    <Container className='view-container' fluid>
       <Row>
-
-        <Card>
+        <NavbarView />
+      </Row>
+      <Row className='justify-content-center login-view'>
+        <Card id='login-form'>
           <Card.Body>
             <Card.Title> Login</Card.Title>
-            <Form>
+            <Form >
               <Form.Group controlId='formUsername'>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control type='text' onChange={e => setUsername(e.target.value)} />
@@ -31,8 +35,8 @@ export function LoginView(props) {
                 <Form.Control type='password' onChange={e => setPassword(e.target.value)} />
               </Form.Group>
             </Form>
-            <Button variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            <Button variant='outline-secondary' type='button'>Register here</Button>
+            <Button id='submit-btn' variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
+            <Button id='register-btn' variant='outline-secondary' type='button'>Register here</Button>
           </Card.Body>
         </Card>
 
