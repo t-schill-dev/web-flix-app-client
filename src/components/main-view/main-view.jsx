@@ -8,7 +8,7 @@ import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { Row, Col, Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
-
+import './main-view.scss';
 
 
 
@@ -49,15 +49,15 @@ export class MainView extends React.Component {
           <NavbarView />
         </Row>
 
-        <Row className='main-view justify-content-md-center'>
+        <Row className='main-view'>
           {selectedMovie
             ? (
-              <Col md={8}>
+              <Col md={8} >
                 <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
               </Col>
             )
             : movies.map(movie => (
-              <Col md={3}>
+              <Col md={3} sm={4} id='movie-card-main'>
                 <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
               </Col>
             ))
