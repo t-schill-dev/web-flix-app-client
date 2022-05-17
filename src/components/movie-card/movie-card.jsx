@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import './movie-card.scss';
+import { Card, Button } from 'react-bootstrap';
 
 export class MovieCard extends React.Component {
 
@@ -9,17 +9,19 @@ export class MovieCard extends React.Component {
     const { movie, onMovieClick } = this.props;
     {/*Add click event to call back function in MainView to change state */ }
     return (
-      <Card>
-        <Card.Img variant='top' src={movie.imageUrl} />
+
+      <Card id='movie-card'>
+        <Card.Img fluid id='movie-card_img' className='text-center' variant='top' src={movie.imageUrl} />
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{movie.plot}</Card.Text>
-          <Button onClick={() => onMovieClick(movie)} variant='link'>Details</Button>
+          <Button id='details-btn' onClick={() => onMovieClick(movie)} variant='link'>Details</Button>
         </Card.Body>
       </Card>
+
     )
   }
-}
+};
 
 MovieCard.propTypes = {
   movie: PropTypes.exact({
