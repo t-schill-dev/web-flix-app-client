@@ -48,21 +48,26 @@ export class MainView extends React.Component {
         <Row>
           <NavbarView />
         </Row>
-
-        <Row className='main-view'>
+        <div>
           {selectedMovie
             ? (
-              <Col md={8} >
-                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-              </Col>
+              <Row className='main-view justify-content-md-center'>
+                <Col md={8} >
+                  <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                </Col>
+              </Row>
             )
-            : movies.map(movie => (
-              <Col md={3} sm={4} id='movie-card-main'>
-                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
-              </Col>
-            ))
+            : (
+              <Row className='main-view justify-content-md-center'>
+                {movies.map(movie => (
+                  <Col md={3} sm={4} id='movie-card-main'>
+                    <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+                  </Col>
+                ))}
+              </Row>
+            )
           }
-        </Row>
+        </div>
       </>
     )
   };
