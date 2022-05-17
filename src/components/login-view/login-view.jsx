@@ -36,7 +36,7 @@ export function LoginView(props) {
               </Form.Group>
             </Form>
             <Button id='submit-btn' variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            <Button id='register-btn' variant='outline-secondary' type='button'>Register here</Button>
+            <Button id='register-btn_secondary' variant='outline-secondary' type='button'>Register here</Button>
           </Card.Body>
         </Card>
 

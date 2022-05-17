@@ -80,7 +80,7 @@ export function RegistrationView(props) {
                   placeholder='DD.MM.YYY'>
                 </Form.Control>
               </Form.Group>
-              <Button variant='primary' id='register-btn'
+              <Button variant='primary' id='register-btn_primary'
                 type='submit' onClick={handleSubmit}>Register
               </Button>
             </Form>
