@@ -30,6 +30,10 @@ export function ProfileView(props) {
       })
   };
 
+  const handleLogout = () => {
+    props.onLoggedOut(user);
+  }
+
   return (
     <Container className='view-container' fluid>
       <Row>
@@ -84,6 +88,7 @@ export function ProfileView(props) {
                 type='submit' onClick={handleSubmit}>Update
               </Button>
             </Form>
+            <Button variant='secondary' type='button' onCklick={{ handleLogout }}>Logout</Button>
           </Card.Body>
         </Card>
 

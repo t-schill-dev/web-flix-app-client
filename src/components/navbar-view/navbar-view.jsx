@@ -1,4 +1,5 @@
 import React from "react";
+import { ProfileView } from '../profile-view/profile-view'
 import './navbar-view.scss';
 
 import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
