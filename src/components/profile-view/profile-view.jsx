@@ -97,7 +97,7 @@ export function ProfileView(props) {
   );
 };
 
-RegistrationView.propTypes = {
+ProfileView.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   email: PropTypes.string,
