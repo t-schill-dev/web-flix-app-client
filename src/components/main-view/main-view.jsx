@@ -39,7 +39,7 @@ export class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('https://web-flix-movies.herokuapp.com/login/movies', {
+    axios.get('https://web-flix-movies.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -50,7 +50,7 @@ export class MainView extends React.Component {
       .catch((error) => {
         console.log(error);
       })
-  }
+  };
 
   render() {
     const { movies, selectedMovie, user } = this.state; // === to this.state.movies
@@ -90,20 +90,19 @@ export class MainView extends React.Component {
         </div>
       </>
     )
-  };
-  // Fetching movie data
-  componentDidMount() {
-    axios.get('https://web-flix-movies.herokuapp.com/movies')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
-};
+  ;
+  // Fetching the access token from local storage
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  };
+}
 
 MainView.propTypes = {
   selectedMovie: PropTypes.func,
@@ -111,4 +110,4 @@ MainView.propTypes = {
     username: PropTypes.string,
     password: PropTypes.string
   })
-}
+};
