@@ -11,7 +11,7 @@ export class MovieCard extends React.Component {
     return (
 
       <Card id='movie-card'>
-        <Card.Img fluid id='movie-card_img' className='text-center' variant='top' src={movie.imageUrl} />
+        <Card.Img fluid='true' id='movie-card_img' className='text-center' variant='top' src={movie.imageUrl} />
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{movie.plot}</Card.Text>

@@ -24,24 +24,24 @@ export function RegistrationView(props) {
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setValues({ usernameErr: 'Username required' });
+      setValues({ ...values, usernameErr: 'Username required' });
       isReq = false;
-    } else if (username.lenghth < 5) {
-      setValues({ username: 'Username must be 5 characters long' })
+    } else if (username.length < 5) {
+      setValues({ ...values, username: 'Username must be 5 characters long' })
       isReq = false;
     }
     if (!password) {
-      setValues({ passwordErr: 'Password required' });
+      setValues({ ...values, passwordErr: 'Password required' });
       isReq = false;
-    } else if (password.lenghth < 6) {
-      setValues({ password: 'Password must be 6 characters long' })
+    } else if (password.length < 6) {
+      setValues({ ...values, password: 'Password must be 6 characters long' })
       isReq = false;
     }
     if (!email) {
-      setValues({ emailErr: 'Email required' });
+      setValues({ ...values, emailErr: 'Email required' });
       isReq = false;
     } else if (email !== emailRegEx) {
-      setValues({ emailErr: 'Email is invalid' })
+      setValues({ ...values, emailErr: 'Email is invalid' })
       isReq = false;
     }
 
