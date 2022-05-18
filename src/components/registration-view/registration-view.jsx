@@ -10,24 +10,62 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+
+  // Use hook for error messages 
+  Const[values, setValues] = useState({
+    usernameErr: '',
+    passwordErr: '',
+    emailErr: '',
+
+  })
+
+  const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setValues({ usernameErr: 'Username required' });
+      isReq = false;
+    } else if (username.lenghth < 5) {
+      setValues({ username: 'Username must be 5 characters long' })
+      isReq = false;
+    }
+    if (!password) {
+      setValues({ passwordErr: 'Password required' });
+      isReq = false;
+    } else if (password.lenghth < 6) {
+      setValues({ password: 'Password must be 6 characters long' })
+      isReq = false;
+    }
+    if (!email) {
+      setValues({ emailErr: 'Email required' });
+      isReq = false;
+    } else if (email !== emailRegEx) {
+      setValues({ emailErr: 'Email is invalid' })
+      isReq = false;
+    }
+
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://web-flix-movies.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    })
-      .then(response => {
-        const data = response.data;
-        window.open('/', '_self');
-        //self opens page in current tab
+    if (isReq) {
+      axios.post('https://web-flix-movies.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
       })
-      .catch(e => {
-        console.log('error registering the user');
-      })
+        .then(response => {
+          const data = response.data;
+          alert('Registration successful, please log in');
+          window.open('/', '_self');
+          //self opens page in current tab
+        })
+        .catch(e => {
+          console.log('error registering the user');
+        })
+    }
   };
 
   return (
@@ -39,7 +77,7 @@ export function RegistrationView(props) {
 
         <Card id='registration-form'>
           <Card.Body>
-            <Card.Title>Please Register</Card.Title>
+            <Card.Title>Sign Up</Card.Title>
             <Form>
               <Form.Group>
                 <Form.Label>Username:*</Form.Label>
@@ -50,6 +88,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter a username'>
                 </Form.Control>
+                {values.usernameErr && <p>{values.usernameErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password:*</Form.Label>
@@ -60,6 +99,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter a Password'>
                 </Form.Control>
+                {values.passwordErr && <p>{values.passwordErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Email:*</Form.Label>
@@ -70,6 +110,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter your email'>
                 </Form.Control>
+                {values.emailErr && <p>{values.emailErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Birthday:</Form.Label>
@@ -81,7 +122,7 @@ export function RegistrationView(props) {
                 </Form.Control>
               </Form.Group>
               <Button variant='primary' id='register-btn_primary'
-                type='submit' onClick={handleSubmit}>Register
+                type='submit' onClick={handleSubmit}>Submit
               </Button>
             </Form>
           </Card.Body>
@@ -95,6 +136,6 @@ export function RegistrationView(props) {
 RegistrationView.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  email: PropTypes.string.isRequired,
   birthday: PropTypes.number
 }
