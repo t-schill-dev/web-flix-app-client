@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { RegistrationView } from "../registration-view/registration-view";
 import { NavbarView } from '../navbar-view/navbar-view';
@@ -12,7 +13,17 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedIn(username);
+    axios.post('https://web-flix-movies.herokuapp.com/login', {
+      username: username,
+      password: password
+    }).then(response => {
+      const data = response.data;
+      /* Data including the token will be passed to parent component */
+      props.onLoggedIn(data)
+    })
+      .catch(e => {
+        console.log('no such user')
+      });
   };
 
   return (
