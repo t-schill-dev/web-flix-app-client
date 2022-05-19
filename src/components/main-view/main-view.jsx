@@ -18,16 +18,10 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
       user: null
     }
   }
 
-  setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie
-    });
-  }
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
     console.log(authData);
@@ -60,47 +54,6 @@ export class MainView extends React.Component {
         console.log(error);
       })
   };
-
-  render() {
-    const { movies, selectedMovie, user } = this.state; // === to this.state.movies
-
-    //Login View is rendered when no user is logged in
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
-    if (movies.length === 0) {
-      return <div className='main-view' />
-    };
-    return (
-      //Container already applied in index.jsx. One row only because condition allows only one possibility to render
-
-      <>
-        <Row>
-          <NavbarView />
-        </Row>
-        <div>
-          {selectedMovie
-            ? (
-              <Row className='main-view justify-content-md-center'>
-                <Col  >
-                  <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                </Col>
-              </Row>
-            )
-            : (
-              <Row className='main-view justify-content-md-center'>
-                {movies.map(movie => (
-                  <Col md={3} sm={4} id='movie-card-main'>
-                    <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
-                  </Col>
-                ))}
-              </Row>
-            )
-          }
-        </div>
-      </>
-    )
-  }
-  ;
   // Fetching the access token from local storage
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
@@ -111,7 +64,47 @@ export class MainView extends React.Component {
       this.getMovies(accessToken);
     }
   };
-}
+
+  render() {
+    const { movies, user } = this.state;
+
+    //Login View is rendered when no user is logged in
+    if (!user) return <Row>
+      <Col>
+        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+      </Col>
+    </Row>;
+    if (movies.length === 0) return <div className='main-view' />;
+
+
+    return (
+      //Container already applied in index.jsx. One row only because condition allows only one possibility to render
+
+      <Router>
+        <Row>
+          <NavbarView />
+        </Row>
+
+        <Row className='main-view justify-content-md-center'>
+          <Route exact path='/' render={() => {
+            return movies.map(movie => (
+              <Col md={3} sm={4} key={movie._id} id='movie-card-main'>
+                <MovieCard movie={movie} />
+              </Col>
+            ))
+          }} />
+          <Route path='/movies/:movieId' render={({ match }) => {
+            return <Col md={8}>
+              <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+            </Col>
+          }} />
+        </Row>
+      </Router>
+
+    )
+  }
+};
+
 
 MainView.propTypes = {
   selectedMovie: PropTypes.func,
