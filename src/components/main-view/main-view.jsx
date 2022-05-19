@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { Row, Col, Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
 
 
