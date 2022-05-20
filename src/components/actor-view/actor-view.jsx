@@ -14,6 +14,7 @@ export class ActorView extends React.Component {
           </Row>
 
           <Row className='movie-actors'>
+            <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
             <Col>
               <h4 className='label'>Name: </h4>
 
