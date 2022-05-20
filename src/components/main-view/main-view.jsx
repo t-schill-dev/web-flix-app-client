@@ -68,15 +68,6 @@ export class MainView extends React.Component {
   render() {
     const { movies, user } = this.state;
 
-    //Login View is rendered when no user is logged in
-    if (!user) return (
-      <Row>
-        <Col>
-          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-        </Col>
-      </Row>)
-    if (movies.length === 0) return <div className='main-view' />;
-
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
 
@@ -87,7 +78,17 @@ export class MainView extends React.Component {
 
         <Row className='main-view justify-content-md-center'>
 
+          {/*HomeRoute*/}
           <Route exact path='/' render={() => {
+            //Login View is rendered when no user is logged in
+            if (!user) return (
+              <Row>
+                <Col>
+                  <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                </Col>
+              </Row>)
+            if (movies.length === 0) return <div className='main-view' />;
+
             return movies.map(m => (
               <Col md={3} sm={4} key={m._id} id='movie-card-main'>
                 <MovieCard movie={m} />
@@ -106,7 +107,15 @@ export class MainView extends React.Component {
           <Route path='/directors/:name' render={({ match }) => {
             if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
-              <DirectorView director={movies.find(m => m.director.name === match.params.movieId).director} />
+              <DirectorView director={movies.find(m => m.director.name === match.params.movieId).director}
+                onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+          <Route path='/genres/:name' render={({ match }) => {
+            if (movies.length === 0) return <div className='main-view' />;
+            return <Col md={8}>
+              <DirectorView director={movies.find(m => m.genres.name === match.params.movieId).director}
+                onBackClick={() => history.goBack()} />
             </Col>
           }} />
         </Row>
