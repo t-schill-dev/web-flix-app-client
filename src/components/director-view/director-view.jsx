@@ -13,6 +13,7 @@ export class DirectorView extends React.Component {
             <NavbarView />
           </Row>
           <Row className='movie-director'>
+            <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
             <Col>
               <h4 className='label'>Director: </h4>
               <h5 className='label'>Bio: </h5>
