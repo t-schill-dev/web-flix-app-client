@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -96,8 +96,13 @@ export class MainView extends React.Component {
             ))
           }} />
 
-
-          <Route path='/movies/:movieId' render={({ match }) => {
+          {/*RegisterRoute*/}
+          <Route path='/register' render={() => {
+            if (user) return <Redirect to='/' />
+            return <Col lg={8} md={8}><RegistrationView /></Col>
+          }} />
+          {/*MovieRoute*/}
+          <Route path='/movies/:movieId' render={({ match, history }) => {
             return <Col md={8}>
               <MovieView movie={movies.find(m => m._id === match.params.movieId)}
                 onBackClick={() => history.goBack()} />
