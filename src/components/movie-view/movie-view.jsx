@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { NavbarView } from '../navbar-view/navbar-view';
+import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -14,9 +15,6 @@ export class MovieView extends React.Component {
           <Row>
             <NavbarView />
           </Row>
-
-
-
           <Row id='movie-view' className='justify-content-center' >
             <Card >
               <div>
@@ -39,7 +37,9 @@ export class MovieView extends React.Component {
                 </div>
                 <div className='movie-details'>
                   <label htmlFor='actors'>Actors:</label>
-                  <Card.Link className='movie-link' onClick={() => onClick(actor)} href='#'>{movie.actors.map((actor) => actor + ', ')}</Card.Link>
+                  <Link to={`/movies/${movie.actors.map((actor) => actor + ', ')}/actors`}>
+                    <Button className='movie-link'></Button>
+                  </Link>
                 </div>
                 <div>
                   <label htmlFor='genres'>Genres: </label>

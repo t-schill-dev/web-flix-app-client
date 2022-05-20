@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -40,7 +40,7 @@ export class MainView extends React.Component {
       user: null
     });
   }
-
+  //Fetch data from database
   getMovies(token) {
     axios.get('https://web-flix-movies.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
@@ -69,13 +69,13 @@ export class MainView extends React.Component {
     const { movies, user } = this.state;
 
     //Login View is rendered when no user is logged in
-    if (!user) return <Row>
-      <Col>
-        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-      </Col>
-    </Row>;
+    if (!user) return (
+      <Row>
+        <Col>
+          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+        </Col>
+      </Row>)
     if (movies.length === 0) return <div className='main-view' />;
-
 
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
@@ -86,16 +86,26 @@ export class MainView extends React.Component {
         </Row>
 
         <Row className='main-view justify-content-md-center'>
+
           <Route exact path='/' render={() => {
-            return movies.map(movie => (
-              <Col md={3} sm={4} key={movie._id} id='movie-card-main'>
-                <MovieCard movie={movie} />
+            return movies.map(m => (
+              <Col md={3} sm={4} key={m._id} id='movie-card-main'>
+                <MovieCard movie={m} />
               </Col>
             ))
           }} />
+
+
           <Route path='/movies/:movieId' render={({ match }) => {
             return <Col md={8}>
               <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+            </Col>
+          }} />
+
+          <Route path='/directors/:name' render={({ match }) => {
+            if (movies.length === 0) return <div className='main-view' />;
+            return <Col md={8}>
+              <DirectorView director={movies.find(m => m.director.name === match.params.movieId).director} />
             </Col>
           }} />
         </Row>
@@ -107,7 +117,6 @@ export class MainView extends React.Component {
 
 
 MainView.propTypes = {
-  selectedMovie: PropTypes.func,
   user: PropTypes.shape({
     username: PropTypes.string,
     password: PropTypes.string
