@@ -10,12 +10,14 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   // Use hook for error messages 
-  Const[values, setValues] = useState({
+  const [values, setValues] = useState({
     usernameErr: '',
     passwordErr: '',
     emailErr: '',
+
 
   })
 
@@ -55,6 +57,7 @@ export function RegistrationView(props) {
         Password: password,
         Email: email,
         Birthday: birthday
+
       })
         .then(response => {
           const data = response.data;

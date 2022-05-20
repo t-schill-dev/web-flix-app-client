@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
-import { RegistrationView } from "../registration-view/registration-view";
+import { Link } from 'react-router-dom'
 import { NavbarView } from '../navbar-view/navbar-view';
 import './login-view.scss';
 
@@ -77,12 +77,15 @@ export function LoginView(props) {
               </Form.Group>
             </Form>
             <Button id='submit-btn' variant='primary' type='submit' onClick={handleSubmit}>Submit</Button>
-            <Button id='register-btn_secondary' variant='outline-secondary' type='button'>Register here</Button>
+            <Link to='/register'>
+              <Button id='register-btn_secondary' variant='outline-secondary' type='button'>Register here</Button>
+            </Link>
+
           </Card.Body>
         </Card>
 
-      </Row>
-    </Container>
+      </Row >
+    </Container >
 
   );
 };
