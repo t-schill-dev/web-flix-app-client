@@ -40,7 +40,7 @@ export function ProfileView(props) {
         <NavbarView />
       </Row>
       <Row className='justify-content-center registration-view' >
-
+        <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
         <Card id='profile-form'>
           <Card.Body>
             <Card.Title>Profile</Card.Title>

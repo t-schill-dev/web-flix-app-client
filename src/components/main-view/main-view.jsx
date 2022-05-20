@@ -134,6 +134,14 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
+          {/*ProfileRoute*/}
+          <Route path={`/users/${user}`} render={({ match, history }) => {
+            if (!user) return <Redirect to='/' />
+            return <Col md={8}>
+              <ActorsView actors={movies.find(m => m.actors.name === match.params.name)}
+                onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
         </Row>
       </Router>
 
