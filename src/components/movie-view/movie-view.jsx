@@ -19,7 +19,7 @@ export class MovieView extends React.Component {
             <Card >
               <div>
                 <Card.Header className='movie-title'>{movie.title}</Card.Header>
-                <Button id='return-button' onClick={() => { onBackClick(null); }}>Back</Button>
+                <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
               </div>
               <Card.Img id='movie-poster' src={movie.imageUrl} alt='Movie poster'></Card.Img>
               <Card.Body >
