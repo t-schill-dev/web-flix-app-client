@@ -13,6 +13,7 @@ export class GenreView extends React.Component {
           <Row>
             <NavbarView />
           </Row>
+          <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
           <Row className='movie-genres'>
             <Col>
               <span className='selectedGenre'>{movie.genres.map((genre) => genre + ', ')}</span>
