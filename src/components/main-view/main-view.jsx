@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
+import { ProfileView } from '../profile-view/profile-view'
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
 
@@ -162,13 +163,22 @@ export class MainView extends React.Component {
           }} />
 
           {/*ProfileRoute*/}
-          <Route path={`/users/${user}`} render={({ history }) => {
+          <Route path={'/users/:Username'} render={({ match, history }) => {
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView movies={movies} user={user}
+              <ProfileView history={history} movies={movies} user={user === match.params.Username}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
+          {/*UserUpdateRoute*/}
+          <Route path={'/user-update/${user}'}
+            render={({ match, history }) => {
+              if (!user) return <Redirect to="/" />
+              return <Col>
+                <UserUpdate user={user === match.params.Username}
+                  onBackClick={() => history.goBack()} />
+              </Col>
+            }} />
         </Row>
       </Router>
 
