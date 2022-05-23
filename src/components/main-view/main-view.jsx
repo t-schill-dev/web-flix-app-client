@@ -162,7 +162,7 @@ export class MainView extends React.Component {
           }} />
 
           {/*ProfileRoute*/}
-          <Route path={`/users/${user}`} render={({ match, history }) => {
+          <Route path={`/users/${user}`} render={({ history }) => {
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
               <ProfileView movies={movies} user={user}
