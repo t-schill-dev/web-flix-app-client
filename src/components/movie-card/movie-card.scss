@@ -1,17 +1,21 @@
 $background-color: #1E263D;
 $underline-color: rgba(25, 200, 185, 0.8);
 #movie-card {
-    height: 700px;
+    height: 750px;
     background-color: $background-color;
     border: solid 1px $underline-color;
 }
 
 #movie-card_img {
-    max-height: 500px;
+    height: 400px;
     width: 100%;
     margin: auto;
 }
 
+// .movie-plot {
+//     inline-size: 1fr;
+//     overflow-wrap: break-word;
+// }
 #details-btn {
     position: absolute;
     bottom: 10px;
