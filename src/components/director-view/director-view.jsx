@@ -1,29 +1,33 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { NavbarView } from '../navbar-view/navbar-view'
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import './director-view.scss';
+
 
 
 export class DirectorView extends React.Component {
   render() {
-    const { movie, onBackClick } = this.props;
+    const { director, onBackClick } = this.props;
     return (
       <>
-        <Container>
-          <Row className='movie-director'>
-            <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-            <Col>
-              <h4 className='label'>Director: </h4>
-              <h5 className='label'>Bio: </h5>
-              <h5 className='label'>Birth: </h5>
-            </Col>
-            <Col>
-              <span className='value'>{movie.director.name}</span>
+        <Container className='view-container'>
+          <Row id='movie-director'>
 
-              <span className='value'>{movie.director.bio}</span>
-
-              <span className='value'>{movie.director.birth}</span>
-            </Col>
-            <Button onClick={() => { onBackClick(null); }}>Back</Button>
+            <Card >
+              <div>
+                <Card.Header className='movie-title'>{director.name}</Card.Header>
+                <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+              </div>
+              <Card.Body >
+                <div>
+                  <label htmlFor='bio' className='label'>Bio: </label>
+                  <Card.Text className='value'>{director.bio}</Card.Text>
+                </div>
+                <div>
+                  <label htmlFor='birth' className='label'>Birth: </label>
+                  <Card.Text className='value'>{director.birth}</Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
 
           </Row>
         </Container>
