@@ -9,9 +9,6 @@ export class DirectorView extends React.Component {
     return (
       <>
         <Container>
-          <Row>
-            <NavbarView />
-          </Row>
           <Row className='movie-director'>
             <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
             <Col>

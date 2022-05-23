@@ -9,9 +9,6 @@ export class ActorView extends React.Component {
     return (
       <>
         <Container>
-          <Row>
-            <NavbarView />
-          </Row>
 
           <Row className='movie-actors'>
             <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>

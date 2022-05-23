@@ -10,9 +10,6 @@ export class GenreView extends React.Component {
     return (
       <>
         <Container>
-          <Row>
-            <NavbarView />
-          </Row>
           <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
           <Row className='movie-genres'>
             <Col>

@@ -38,7 +38,7 @@ export class MovieView extends React.Component {
                 <div className='movie-details'>
                   <label htmlFor='actors'>Actors:</label>
                   <Link to={`/movies/${movie.actors.map((actor) => actor + ', ')}/actors`}>
-                    <Button className='movie-link'></Button>
+                    <Button variant='link' className='movie-link'>{movie.actors.map((actor) => actor + ', ')}</Button>
                   </Link>
                 </div>
                 <div>
