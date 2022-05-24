@@ -8,17 +8,10 @@ $text-color: #F7F7F7;
 $dark-text: #1E263D;
 $font: 'Fredoka',
 sans-serif;
-.view1-container {
-    width: 100%;
-    display: flex;
-}
-
 #movie-director {
-    align-items: flex-start;
     margin-top: 100px;
     background-color: $background-light;
     color: $dark-text;
-    width: 100%;
 }
 
 .page-title {
@@ -40,7 +33,6 @@ sans-serif;
 
 .value {
     padding: 5px;
-    flex-wrap: nowrap;
 }
 
 #return-button {
@@ -49,7 +41,7 @@ sans-serif;
     width: 70px;
     position: absolute;
     top: 1rem;
-    right: 3px;
+    right: 10px;
     padding: 3px;
     &:hover {
         background-color: $button-hover;
