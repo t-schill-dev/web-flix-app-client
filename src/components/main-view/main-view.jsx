@@ -7,6 +7,8 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
+import { DirectorView } from '../director-view/director-view';
+import { ActorView } from '../actor-view/actor-view'
 import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view'
 import { Row, Col } from 'react-bootstrap';
@@ -112,7 +114,7 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className='main-view' />;
 
             return <Col md={8}>
-              <MovieView movie={movies.find(m => m._id === match.params.movieId)}
+              <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
@@ -157,25 +159,27 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className='main-view' />;
 
             return <Col md={8}>
-              <ActorsView actors={movies.find(m => m.actors.name === match.params.name)}
+              <ActorView actors={movies.find(m => m.actors.name === match.params.name)}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
 
           {/*ProfileRoute*/}
-          <Route path={'/users/:Username'} render={({ match, history }) => {
+          <Route path={`/users/${user}`} render={({ match, history }) => {
+
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView history={history} movies={movies} user={user === match.params.Username}
+              <ProfileView history={history} movies={movies} user={user === match.params.username}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
+
           {/*UserUpdateRoute*/}
           <Route path={'/user-update/${user}'}
             render={({ match, history }) => {
               if (!user) return <Redirect to="/" />
               return <Col>
-                <UserUpdate user={user === match.params.Username}
+                <UserUpdate user={user === match.params.username}
                   onBackClick={() => history.goBack()} />
               </Col>
             }} />

@@ -33,7 +33,7 @@ export function NavbarView({ user }) {
               <Nav.Link href={'/'}>Home</Nav.Link>
             )}
             {isAuth() && (
-              <Nav.Link href={'/users/:Username'}>Profile</Nav.Link>
+              <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
             )}
           </Nav>
           {isAuth() && (
