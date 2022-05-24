@@ -30,6 +30,7 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
   movie: PropTypes.exact({
+    _id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number,
     runtime: PropTypes.number,
@@ -37,8 +38,6 @@ MovieCard.propTypes = {
     imageUrl: PropTypes.string.isRequired,
     director: PropTypes.shape({
       name: PropTypes.string,
-      bio: PropTypes.string,
-      birth: PropTypes.number,
     }).isRequired,
     actors: PropTypes.array.isRequired,
     genres: PropTypes.array.isRequired
