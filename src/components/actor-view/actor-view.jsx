@@ -1,30 +1,24 @@
 import React from 'react';
-import { Container, Row, Col, Button, Nav, Navbar } from 'react-bootstrap';
-import { NavbarView } from '../navbar-view/navbar-view';
+import { Row, Button, Col } from 'react-bootstrap';
+import './actor-view.scss';
+
 
 
 export class ActorView extends React.Component {
   render() {
-    const { movie, onBackClick } = this.props;
+    const { actors, onBackClick } = this.props;
     return (
-      <>
-        <Container>
 
-          <Row className='movie-actors'>
+      <Row id='movie-actors'>
+        <Col>
+          <div>
+            <h1 className='movie-title'>{actors}</h1>
             <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-            <Col>
-              <h4 className='label'>Name: </h4>
+          </div>
+        </Col>
+      </Row>
 
-            </Col>
-            <Col>
-              <span className='selectedActor'>{movie.actors.map((actor) => actor + ', ')}</span>
 
-            </Col>
-            <Button onClick={() => { onBackClick(null); }}>Back</Button>
-
-          </Row>
-        </Container>
-      </>
     )
   }
 }
