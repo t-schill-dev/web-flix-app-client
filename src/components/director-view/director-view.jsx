@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Row, Button, Card } from 'react-bootstrap';
 import './director-view.scss';
 
 
@@ -9,9 +9,7 @@ export class DirectorView extends React.Component {
     const { director, onBackClick } = this.props;
     return (
 
-
       <Row id='movie-director'>
-
         <Card >
           <div>
             <Card.Header className='movie-title'>{director.name}</Card.Header>
@@ -19,12 +17,11 @@ export class DirectorView extends React.Component {
           </div>
           <Card.Body >
             <label htmlFor='bio' className='label'>Biography: </label>
-            <p className='value'>{director.bio}</p>
+            <Card.Text className='value'>{director.bio}</Card.Text>
             <label htmlFor='birth' className='label'>Birth: </label>
-            <p className='value'>{director.birth}</p>
+            <Card.Text className='value'>{director.birth}</Card.Text>
           </Card.Body>
         </Card>
-
       </Row>
 
 
