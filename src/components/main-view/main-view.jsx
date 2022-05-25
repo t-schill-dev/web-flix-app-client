@@ -8,7 +8,6 @@ import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
-import { ActorView } from '../actor-view/actor-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { Row, Col } from 'react-bootstrap';
@@ -145,21 +144,6 @@ export class MainView extends React.Component {
 
             return <Col md={8}>
               <GenreView genres={movies.find(m => m.genres.name === match.params.name)}
-                onBackClick={() => history.goBack()} />
-            </Col>
-          }} />
-
-          {/*ActorsRoute*/}
-          <Route path='/actors/:name' render={({ match, history }) => {
-            if (!user) return (
-              <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-              </Col>
-            )
-            if (movies.length === 0) return <div className='main-view' />;
-
-            return <Col md={8}>
-              <ActorView actors={movies.find(m => m.actors.name === match.params.name)}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />

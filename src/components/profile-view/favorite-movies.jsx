@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row, Card, Button } from 'react-bootstrap';
 
-export function FavoriteMovies({ favoriteMovieList, removeFav }) {
+export function FavoriteMovies({ favoriteMovies, removeFav }) {
   return (
     <>
       <Row>
@@ -11,7 +11,7 @@ export function FavoriteMovies({ favoriteMovieList, removeFav }) {
         </Col>
       </Row>
       <Row>
-        {favoriteMovieList.map(movie => {
+        {favoriteMovies.map(movie => {
           return (
             <Col key={_id}>
               <Card id='movie-card'>
