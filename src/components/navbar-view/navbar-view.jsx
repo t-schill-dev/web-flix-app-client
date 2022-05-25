@@ -1,11 +1,10 @@
 import React from "react";
-import { ProfileView } from '../profile-view/profile-view'
 import './navbar-view.scss';
 
 import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
 
 export function NavbarView({ user }) {
-  const onLoggedOut = () => {
+  function onLoggedOut() {
     localStorage.clear();
     window.open("/", "_self");
   }
@@ -19,7 +18,7 @@ export function NavbarView({ user }) {
     } else {
       return false;
     }
-  };
+  }
 
   return (
 
@@ -48,7 +47,7 @@ export function NavbarView({ user }) {
             </Form>
           )}
           {isAuth() && (
-            <Button variant='link' onClick={() => { this.onLoggedOut() }}>Logout</Button>
+            <Button variant='link' onClick={() => { onLoggedOut() }}>Logout</Button>
           )}
           {!isAuth() && (
             <Nav.Link href="/">Login</Nav.Link>
@@ -61,4 +60,4 @@ export function NavbarView({ user }) {
       </Container>
     </Navbar>
   )
-}
+};
