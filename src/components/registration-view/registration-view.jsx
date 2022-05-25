@@ -21,7 +21,7 @@ export function RegistrationView(props) {
 
   })
 
-  const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]{4,}@[a-zA-Z0-9-]{3}(?:\.[a-zA-Z0-9-]{2,3})*$/;
 
   const validate = () => {
     let isReq = true;
@@ -42,21 +42,22 @@ export function RegistrationView(props) {
     if (!email) {
       setValues({ ...values, emailErr: 'Email required' });
       isReq = false;
-    } else if (email !== emailRegEx) {
+    } else if (email.indexOf('@') === -1) {
       setValues({ ...values, emailErr: 'Email is invalid' })
       isReq = false;
     }
-
+    return isReq;
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isReq = validate();
     if (isReq) {
       axios.post('https://web-flix-movies.herokuapp.com/users', {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday
+        username: username,
+        password: password,
+        email: email,
+        birthday: birthday
 
       })
         .then(response => {
