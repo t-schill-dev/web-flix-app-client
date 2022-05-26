@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Button, Col, Row, Card } from 'react-bootstrap';
 
 export function UpdatedUser(props) {
-  const user = props.userData;
+  const user = props.userdata;
   const { handleSubmit, handleUpdate } = props;
 
   return (
@@ -19,7 +19,7 @@ export function UpdatedUser(props) {
                 <Form.Control
                   type='text'
                   name='Username'
-                  defaultValue={user.Username}
+                  defaultValue={user.username}
                   onChange={e => handleUpdate(e)}
                 />
               </Form.Group>
@@ -44,7 +44,7 @@ export function UpdatedUser(props) {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
+              <Button variant="primary" type="submit" onClick={handleSubmit()}>
                 Update
               </Button>
               <h5>After update, please log out, then log back in</h5>

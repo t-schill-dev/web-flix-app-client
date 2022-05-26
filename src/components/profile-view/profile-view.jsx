@@ -10,17 +10,17 @@ import { FavoriteMovies } from './favorite-movies';
 
 export function ProfileView(props) {
 
-  const [userData, setUserData] = useState({});
+  const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState({});
 
   let token = localStorage.getItem('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-  const getUserData = (cancelToken, user) => {
-    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, { cancelToken: cancelToken })
+  const getUserData = (user) => {
+    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, { signal: controller.signal })
       .then(res => {
-        setUserData(res.data);
+        setuserdata(res.data);
         setUpdatedUser(res.data);
         setFavoriteMovies(props.movies.filter(m => res.data.favoriteMovies.includes(m._id)));
       })
@@ -29,8 +29,9 @@ export function ProfileView(props) {
       })
   }
 
+  //TEST: Cancel request if no token available
   useEffect(() => {
-    let source = axios.CancelToken.source();
+    const controller = new AbortController();
 
     if (token !== null) {
       getUserData(source.token, props.user);
@@ -38,15 +39,15 @@ export function ProfileView(props) {
       console.log('Not authorized')
     }
     return () => {
-      source.cancel();
+      controller.abort();
     }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`https://web-flix-movies.herokuapp.com/users/${userData.username}`, updatedUser)
+    axios.put(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`, updatedUser)
       .then(response => {
-        setUserData(response.data);
+        setuserdata(response.data);
         alert('Profile updated')
       })
       .catch(e => {
@@ -61,7 +62,7 @@ export function ProfileView(props) {
   }
 
   const deleteProfile = () => {
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userData.username}`)
+    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`)
       .then(res => {
         alert("Your profile has been deleted");
         localStorage.removeItem('user');
@@ -75,7 +76,7 @@ export function ProfileView(props) {
   }
 
   const removeFav = (id) => {
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userData.username}/movies/${id}}`)
+    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userdata.username}/movies/${id}}`)
       .then(() => {
         setFavoriteMovies(favoriteMovies.filter(movie => movie._id != id))
       })
@@ -90,10 +91,10 @@ export function ProfileView(props) {
       <Row className='justify-content-center registration-view' >
         <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
         <Col>
-          <UserData userData={userData} />
+          <UserData userdata={userdata} />
           <FavoriteMovies favoriteMovies={favoriteMovies} removeFav={removeFav} />
           {/*Form to update user data*/}
-          <UpdatedUser userData={userData} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
+          <UpdatedUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
           <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>
         </Col>
 
