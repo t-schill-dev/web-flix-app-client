@@ -1,8 +1,6 @@
 $background-color: #1E263D;
-$underline-color: rgba(25, 200, 185, 0.8);
 $favorite-star: #FFD700;
 $buttons-inactive: #E4E4E4;
-$button-hover: rgba(25, 200, 185, 1);
 $text-color: #F7F7F7;
 $font: 'Fredoka',
 sans-serif;
@@ -10,6 +8,7 @@ sans-serif;
     background-color: $background-color;
     color: $text-color;
     font-family: $font;
+    min-height: 100vh;
     height: 100%;
 }
 
