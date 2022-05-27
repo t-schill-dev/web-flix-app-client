@@ -40,7 +40,7 @@ export class MovieView extends React.Component {
 
               {movie.genres.map((genre) => {
                 return (
-                  <Link to={`/movies/genres/${genre}`}>
+                  <Link to={`/genres/${genre}`}>
                     <Button variant='link' className='movie-link'>{genre}</Button>
                   </Link>
                 )
