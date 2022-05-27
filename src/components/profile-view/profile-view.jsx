@@ -12,36 +12,27 @@ export function ProfileView(props) {
 
   const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
-  const [favoriteMovies, setFavoriteMovies] = useState({});
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   let token = localStorage.getItem('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   const getUserData = (user) => {
-    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, { signal: controller.signal })
-      .then(res => {
-        setuserdata(res.data);
-        setUpdatedUser(res.data);
-        setFavoriteMovies(props.movies.filter(m => res.data.favoriteMovies.includes(m._id)));
-      })
+    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`)
+      .then(axios.spread(newData => {
+        setuserdata(newData.data);
+        setUpdatedUser(newData.data);
+        setFavoriteMovies(props.movies.filter(m => newData.data.favoriteMovies.includes(m._id)));
+      }))
       .catch(err => {
         console.log(err);
       })
   }
 
-  //TEST: Cancel request if no token available
   useEffect(() => {
-    const controller = new AbortController();
+    getUserData(), []
+  })
 
-    if (token !== null) {
-      getUserData(source.token, props.user);
-    } else {
-      console.log('Not authorized')
-    }
-    return () => {
-      controller.abort();
-    }
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
