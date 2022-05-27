@@ -75,7 +75,7 @@ export class MainView extends React.Component {
 
       <Router>
         <Row>
-          <NavbarView />
+          <NavbarView user={user} />
         </Row>
 
         <Row className='main-view justify-content-md-center'>
@@ -143,7 +143,7 @@ export class MainView extends React.Component {
             // if (movies.length === 0) return <div className='main-view' />;
 
             return <Col md={8}>
-              <GenreView movies={movies} genre={movies.filter((movie) => movie.genres.includes(match.params.name))}
+              <GenreView genreName={match.params.name} genre={movies.filter((movie) => movie.genres.includes(match.params.name))}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
@@ -153,7 +153,7 @@ export class MainView extends React.Component {
 
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView history={history} movies={movies} user={user === match.params.username}
+              <ProfileView favoriteMovies={user.favoriteMovies} history={history} movies={movies} user={user === match.params.username}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
