@@ -44,7 +44,7 @@ export function UpdatedUser(props) {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={handleSubmit()}>
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Update
               </Button>
               <h5>After update, please log out, then log back in</h5>
