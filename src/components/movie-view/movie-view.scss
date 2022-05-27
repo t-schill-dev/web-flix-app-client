@@ -1,6 +1,6 @@
 $background-dark: #1E263D;
 $background-light: #E4E4E4;
-$button-color: rgba(25, 200, 185, 0.8);
+$button-color: rgba(25, 200, 185, 0.7);
 $favorite-star: #FFD700;
 $buttons-inactive: #E4E4E4;
 $button-hover: rgba(25, 200, 185, 1);
@@ -12,7 +12,6 @@ sans-serif;
     margin-top: 100px;
     background-color: $background-light;
     color: $dark-text;
-    width: 100%;
 }
 
 .movie-title {
@@ -20,22 +19,23 @@ sans-serif;
     font-weight: 400;
 }
 
+#image-wrapper {}
+
 #movie-poster {
     width: 200px;
     height: 300px;
     padding: 5px;
-    float: right;
 }
 
-label {
+.label {
     font-weight: 600;
     width: 100px;
+    padding: 10px 0;
+    margin-right: 60px;
 }
 
-.movie-link,
 .movie-details {
-    padding: 5px;
-    margin-left: 5px;
+    padding: 6px;
 }
 
 #return-button {

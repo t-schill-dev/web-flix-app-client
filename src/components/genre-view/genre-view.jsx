@@ -1,60 +1,52 @@
 import React from 'react';
-import { Container, Row, Col, Button, Nav, Navbar, Carousel } from 'react-bootstrap';
+import { Container, Row, Button, Carousel, Card } from 'react-bootstrap';
 import { NavbarView } from '../navbar-view/navbar-view';
+import { FavoriteMovies } from '../profile-view/favorite-movies';
 
 
 export class GenreView extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
 
   render() {
-    const { movie } = this.props;
+    const { movies, genre, onBackClick } = this.props;
+
     return (
       <>
-        <Container>
-          <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-          <Row className='movie-genres'>
-            <Col>
-              <span className='selectedGenre'>{movie.genres.map((genre) => genre + ', ')}</span>
-
-            </Col>
-            <Button onClick={() => { onBackClick(null); }}>Back</Button>
-
+        <Container id='genre-view'>
+          <Row>
+            <Card >
+              <div>
+                <Card.Header className='genre-title'>{genre}</Card.Header>
+                <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+              </div>
+            </Card>
           </Row>
         </Container>
 
         <Carousel>
-          <Carousel.Item interval={1000}>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=First slide&bg=373940"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item interval={500}>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Second slide&bg=282c34"
-              alt="Second slide"
-            />
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="holder.js/800x400?text=Third slide&bg=20232a"
-              alt="Third slide"
-            />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
+          {movies.map((movie) => {
+            if (movie.genre === genre) {
+              return (
+                <Carousel.Item key={movie._id}>
+                  <img
+                    className="d-block w-100"
+                    src="holder.js/800x400?text=First slide&bg=373940"
+                    alt="First slide"
+                  />
+                  <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+
+              )
+            }
+          })};
+
         </Carousel>
       </>
     )
