@@ -78,11 +78,16 @@ export function ProfileView(props) {
 
   return (
     <Container className='view-container' fluid>
-
-      <Row className='justify-content-center registration-view' >
-        <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+      <Row>
         <Col>
-          <UserData userdata={userdata} />
+          <h4>Hi, {userdata.username}</h4>
+        </Col>
+      </Row>
+      <Row className='justify-content-center profile-view' >
+
+        <Button id='return-button' onClick={() => { onBackClick() }}>Back</Button>
+        <Col>
+          <UserData id='user-data' userdata={userdata} />
           <FavoriteMovies favoriteMovies={favoriteMovies} removeFav={removeFav} />
           {/*Form to update user data*/}
           <UpdatedUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
