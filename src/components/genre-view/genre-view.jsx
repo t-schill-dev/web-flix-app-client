@@ -12,7 +12,9 @@ export class GenreView extends React.Component {
   }
 
   render() {
-    const { movies, genre, onBackClick } = this.props;
+    const { genreName, genre, onBackClick } = this.props;
+    console.log(genre);
+    console.log(genreName)
 
     return (
       <>
@@ -20,7 +22,7 @@ export class GenreView extends React.Component {
           <Row>
             <Card >
               <div>
-                <Card.Header className='genre-title'>{genre}</Card.Header>
+                <Card.Header className='genre-title'>{genreName}</Card.Header>
                 <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
               </div>
             </Card>
@@ -28,24 +30,24 @@ export class GenreView extends React.Component {
         </Container>
 
         <Carousel>
-          {movies.map((movie) => {
-            if (movie.genre === genre) {
-              return (
-                <Carousel.Item key={movie._id}>
-                  <img
-                    className="d-block w-100"
-                    src="holder.js/800x400?text=First slide&bg=373940"
-                    alt="First slide"
-                  />
-                  <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
+          {genre.map((movie) => {
 
-              )
-            }
-          })};
+            return (
+              <Carousel.Item key={movie._id}>
+                <img
+                  className="d-block w-100"
+                  src="holder.js/800x400?text=First slide&bg=373940"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>First slide label</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+            )
+          }
+          )};
 
         </Carousel>
       </>
