@@ -143,7 +143,7 @@ export class MainView extends React.Component {
             // if (movies.length === 0) return <div className='main-view' />;
 
             return <Col md={8}>
-              <GenreView genreName={match.params.name} genre={movies.filter((movie) => movie.genres.includes(match.params.name))}
+              <GenreView movies={movies} genreName={match.params.name}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
