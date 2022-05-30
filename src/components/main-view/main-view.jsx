@@ -1,27 +1,25 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
-import { ActorView } from '../actor-view/actor-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { ProfileView } from '../profile-view/profile-view';
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
-
+import { ProfileView } from '../profile-view/profile-view';
 
 
 export class MainView extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       movies: [],
-      user: null
+      user: props.user
     }
   }
 
@@ -43,6 +41,7 @@ export class MainView extends React.Component {
       user: null
     });
   }
+
   //Fetch data from database
   getMovies(token) {
     axios.get('https://web-flix-movies.herokuapp.com/movies', {
@@ -57,6 +56,7 @@ export class MainView extends React.Component {
         console.log(error);
       })
   };
+
   // Fetching the access token from local storage
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
@@ -72,11 +72,9 @@ export class MainView extends React.Component {
     const { movies, user } = this.state;
 
     return (
-      //Container already applied in index.jsx. One row only because condition allows only one possibility to render
-
       <Router>
         <Row>
-          <NavbarView />
+          <NavbarView user={user}/>
         </Row>
 
         <Row className='main-view justify-content-md-center'>
@@ -134,6 +132,7 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
+
           {/*GenresRoute*/}
           <Route path='/genres/:name' render={({ match, history }) => {
             if (!user) return (
@@ -165,17 +164,15 @@ export class MainView extends React.Component {
           }} />
 
           {/*ProfileRoute*/}
-          <Route path={`/users/${user}`} render={({ match, history }) => {
-
+          <Route exact path={`/users/:user`} render={({ match, history }) => {
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView history={history} movies={movies} user={user === match.params.username}
-                onBackClick={() => history.goBack()} />
+<ProfileView user={user}/>
             </Col>
           }} />
 
           {/*UserUpdateRoute*/}
-          <Route path={'/user-update/${user}'}
+          <Route path={`/user-update/${user}`}
             render={({ match, history }) => {
               if (!user) return <Redirect to="/" />
               return <Col>

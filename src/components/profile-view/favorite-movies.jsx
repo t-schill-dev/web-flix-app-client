@@ -11,7 +11,7 @@ export function FavoriteMovies({ favoriteMovieList, removeFav }) {
         </Col>
       </Row>
       <Row>
-        {favoriteMovieList.map(movie => {
+        {favoriteMovieList.length > 0 && favoriteMovieList.map(movie => {
           return (
             <Col key={_id}>
               <Card id='movie-card'>
@@ -23,7 +23,6 @@ export function FavoriteMovies({ favoriteMovieList, removeFav }) {
                   <Link to={`/movies/${movie._id}`}>
                     <Button id='details-btn' variant='link'>Details</Button>
                   </Link>
-
                 </Card.Body>
               </Card>
             </Col>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
-import { NavbarView } from '../navbar-view/navbar-view';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import './profile-view.scss';
 
 import { UserData } from './user-data';
@@ -11,7 +10,7 @@ import { FavoriteMovies } from './favorite-movies';
 
 export function ProfileView(props) {
 
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({username: "blessdarah", email: "blessdarah@test.com", birthday: "02-11-2995"});
   const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovieList, setFavoriteMovieList] = useState({});
 
@@ -22,6 +21,7 @@ export function ProfileView(props) {
     axios.get(`https://web-flix-movies.herokuapp.com/users/${username}`, { cancelToken: cancelToken })
       .then(res => {
         setUserData(res.data);
+    console.log('user data: ', res.data);
         setUpdatedUser(res.data);
         setFavoriteMovieList(props.movies.filter(m => res.data.FavoriteMovies.includes(m._id)));
       })
@@ -34,6 +34,7 @@ export function ProfileView(props) {
     let source = axios.CancelToken.source();
 
     if (token !== null) {
+        console.log('user: ', props.user);
       getUserData(source.token, props.user);
     } else {
       console.log('Not authorized')
@@ -86,9 +87,10 @@ export function ProfileView(props) {
   }
 
   return (
+    // <Router basename="users/">
     <Container className='view-container' fluid>
-
       <Row className='justify-content-center registration-view' >
+        <h3>Profile page</h3>
         <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
         <Col>
           <UserData userData={userData} />
@@ -97,15 +99,17 @@ export function ProfileView(props) {
           <UpdatedUser userData={userData} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
           <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>
         </Col>
-
       </Row >
     </Container >
+// </Router> 
   );
 };
 
 ProfileView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  birthday: PropTypes.number
+  userData: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      password: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      birthday: PropTypes.number,
+  })
 }

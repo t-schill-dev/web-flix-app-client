@@ -1,10 +1,12 @@
 import React from "react";
-import { ProfileView } from '../profile-view/profile-view'
 import './navbar-view.scss';
 
 import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import { Link, useHistory } from "react-router-dom";
 
 export function NavbarView({ user }) {
+
+    const history = useHistory();
   const onLoggedOut = () => {
     localStorage.clear();
     window.open("/", "_self");
@@ -29,12 +31,18 @@ export function NavbarView({ user }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {isAuth() && (
-              <Nav.Link href={'/'}>Home</Nav.Link>
-            )}
-            {isAuth() && (
-              <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
-            )}
+    {
+        isAuth() && (
+            <>
+        <Link to={'/'} style={{marginRight: 10, textDecoration: 'none', color: '#fff', fontSize: '1rem'}}>
+            <span>Home</span>
+        </Link>
+        <Link to={`/users/${user}`} style={{marginRight: 10, textDecoration: 'none', color: '#fff', fontSize: '1rem'}}>
+            <span>profile</span>
+        </Link>
+            </>
+        )
+    }
           </Nav>
           {isAuth() && (
             <Form className="d-flex">

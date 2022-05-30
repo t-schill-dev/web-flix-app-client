@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { MainView } from './components/main-view/main-view';
-import Container from 'react-bootstrap/Container'
+import {Container} from 'react-bootstrap'
 import './index.scss';
 
 //Main component
@@ -18,5 +18,8 @@ class WebFlixApplication extends React.Component {
 //Finds the root of app
 const container = document.getElementsByClassName('app-container')[0];
 
+// create root element
+const root = ReactDOM.createRoot(container);
+
 //Render app in root DOM element
-ReactDOM.render(React.createElement(WebFlixApplication), container);
+root.render(React.createElement(WebFlixApplication));

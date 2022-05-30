@@ -46,12 +46,13 @@ export function RegistrationView(props) {
       setValues({ ...values, emailErr: 'Email is invalid' })
       isReq = false;
     }
+      return isReq;
 
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isReq) {
+    if (validate()) {
       axios.post('https://web-flix-movies.herokuapp.com/users', {
         Username: username,
         Password: password,
