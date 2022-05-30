@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -17,11 +17,11 @@ import './main-view.scss';
 
 
 export class MainView extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       movies: [],
-      user: null
+      user: props.user
     }
   }
 
@@ -165,17 +165,17 @@ export class MainView extends React.Component {
           }} />
 
           {/*ProfileRoute*/}
-          <Route path={`/users/${user}`} render={({ match, history }) => {
+          <Route exact path={`/users/:user`} render={({ match, history }) => {
 
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView favoriteMovies={user.favoriteMovies} history={history} movies={movies} user={user === match.params.username}
-                onBackClick={() => history.goBack()} />
+              <ProfileView user={user} movies={movies}
+              />
             </Col>
           }} />
 
           {/*UserUpdateRoute*/}
-          <Route path={'/user-update/${user}'}
+          <Route path={`/user-update/${user}`}
             render={({ match, history }) => {
               if (!user) return <Redirect to="/" />
               return <Col>

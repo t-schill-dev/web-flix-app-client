@@ -8,7 +8,7 @@ export function UserData(props) {
       <Col>
         <Card className='bg-light text-black' border='black' style={{ textAlign: 'left', marginTop: 20 }}>
           <Card.Title style={{ marginTop: 10, textAlign: "center" }}>Profile</Card.Title>
-          <Card.Body>
+          <Card.Body className='text-dark'>
             <Card.Text>Username: {userdata.username}</Card.Text>
             <Card.Text>Email: {userdata.email}</Card.Text>
             <Card.Text>Birthday: {userdata.birthday}</Card.Text>

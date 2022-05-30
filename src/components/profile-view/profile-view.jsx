@@ -10,6 +10,8 @@ import { FavoriteMovies } from './favorite-movies';
 
 export function ProfileView(props) {
 
+  const user = props.user;
+
   const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -19,19 +21,20 @@ export function ProfileView(props) {
 
   const getUserData = (user) => {
     axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`)
-      .then(axios.spread(newData => {
-        setuserdata(newData.data);
-        setUpdatedUser(newData.data);
-        setFavoriteMovies(props.movies.filter(m => newData.data.favoriteMovies.includes(m._id)));
-      }))
+      .then(res => {
+        setuserdata(res.data);
+        setUpdatedUser(res.data);
+        setFavoriteMovies(props.movies.filter(m => res.data.favoriteMovies.includes(m._id)));
+      })
       .catch(err => {
+
         console.log(err);
       })
   }
 
   useEffect(() => {
-    getUserData(), []
-  })
+    getUserData(user)
+  }, [])
 
 
   const handleSubmit = (e) => {
@@ -100,8 +103,10 @@ export function ProfileView(props) {
 };
 
 ProfileView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  birthday: PropTypes.number
+  userdata: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    birthday: PropTypes.number,
+  })
 }
