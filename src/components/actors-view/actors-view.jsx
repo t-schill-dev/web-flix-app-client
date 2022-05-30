@@ -1,30 +1,29 @@
 import React from 'react';
 import { Container, Row, Button, Carousel, Card } from 'react-bootstrap';
-import './genre-view.scss';
+import './actors-view.scss';
 
 
-export class GenreView extends React.Component {
+export class ActorsView extends React.Component {
   constructor() {
     super();
   }
 
   render() {
-    const { genreName, onBackClick, movies } = this.props;
-    console.log(genreName)
+    const { actorName, onBackClick, movies } = this.props;
     return (
       <>
         <Container >
           <Row >
-            <Card id='genre-view'>
+            <Card id='actor-view'>
               <div>
-                <Card.Header className='card-title'>{genreName}</Card.Header>
+                <Card.Header className='card-title'>{actorName}</Card.Header>
 
                 <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
               </div>
-              <Card.Text className='text-muted subtitle'>More movies of the same genre:</Card.Text>
+              <Card.Text className='text-muted subtitle'>More movies of that actor:</Card.Text>
               <Carousel variant='dark' className='movie-carousel'>
                 {movies.map((movie) => {
-                  if (movie.genres.includes(genreName)) {
+                  if (movie.actors.includes(actorName)) {
                     return (
                       <Carousel.Item key={movie._id} className='text-center' >
                         <img

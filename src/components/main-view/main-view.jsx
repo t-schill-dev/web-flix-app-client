@@ -10,6 +10,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { ActorsView } from '../actors-view/actors-view';
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
 
@@ -135,15 +136,30 @@ export class MainView extends React.Component {
 
           {/*GenresRoute*/}
           <Route path='/genres/:name' render={({ match, history }) => {
-            // if (!user) return (
-            //   <Col>
-            //     <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            //   </Col>
-            // )
-            // if (movies.length === 0) return <div className='main-view' />;
+            if (!user) return (
+              <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+              </Col>
+            )
+            if (movies.length === 0) return <div className='main-view' />;
 
             return <Col md={8}>
               <GenreView movies={movies} genreName={match.params.name}
+                onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+          {/*ActorsRoute showing actors associated with movies*/}
+          <Route path='/actors/:name' render={({ match, history }) => {
+            if (!user) return (
+              <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+              </Col>
+            )
+            if (movies.length === 0) return <div className='main-view' />;
+
+            return <Col md={8}>
+              <ActorsView movies={movies} actorName={match.params.name}
                 onBackClick={() => history.goBack()} />
             </Col>
           }} />
