@@ -42,7 +42,7 @@ export function RegistrationView(props) {
     if (!email) {
       setValues({ ...values, emailErr: 'Email required' });
       isReq = false;
-    } else if (email.indexOf('@') === -1) {
+    } else if (emailRegEx.test(email) === -1) {
       setValues({ ...values, emailErr: 'Email is invalid' })
       isReq = false;
     }
