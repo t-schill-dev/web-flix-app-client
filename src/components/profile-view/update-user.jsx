@@ -12,7 +12,7 @@ export function UpdatedUser(props) {
           <Card className="bg-light text-black" border='danger' style={{ textAlign: 'left', marginTop: 20 }}>
             <Card.Title style={{ marginTop: 10, textAlign: "center" }}>Update Profile</Card.Title>
 
-            <Form className="profile-form" onSubmit={(e) => handleSubmit(e)} border='danger' style={{ margin: 20 }}>
+            <Form className="profile-form" onSubmit={handleSubmit} border='danger' style={{ margin: 20 }}>
 
               <Form.Group controlId="formUsername" className="mb-3">
                 <Form.Label>Username:</Form.Label>
@@ -43,8 +43,7 @@ export function UpdatedUser(props) {
                   onChange={e => handleUpdate(e)}
                 />
               </Form.Group>
-
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
+              <Button variant="primary" type="submit">
                 Update
               </Button>
               <h5>After update, please log out, then log back in</h5>
