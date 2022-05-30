@@ -11,6 +11,7 @@ import { FavoriteMovies } from './favorite-movies';
 export function ProfileView(props) {
 
   const user = props.user;
+  const movies = props.movies;
 
   const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
@@ -21,17 +22,18 @@ export function ProfileView(props) {
 
   const getUserData = (user) => {
     axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`)
+
       .then(res => {
         setuserdata(res.data);
         setUpdatedUser(res.data);
-        setFavoriteMovies(props.movies.filter(m => res.data.favoriteMovies.includes(m._id)));
+        setFavoriteMovies(res.data.favoriteMovies);
       })
       .catch(err => {
 
         console.log(err);
       })
   }
-
+  // Load it once per rendering by adding []
   useEffect(() => {
     getUserData(user)
   }, [])
@@ -83,7 +85,7 @@ export function ProfileView(props) {
     <Container className='view-container' fluid>
       <Row>
         <Col>
-          <h4>Hi, {userdata.username}</h4>
+          <h4 className='text-dark'>Hi, {userdata.username}</h4>
         </Col>
       </Row>
       <Row className='justify-content-center profile-view' >
@@ -91,7 +93,7 @@ export function ProfileView(props) {
         <Button id='return-button' onClick={() => { onBackClick() }}>Back</Button>
         <Col>
           <UserData id='user-data' userdata={userdata} />
-          <FavoriteMovies favoriteMovies={favoriteMovies} removeFav={removeFav} />
+          <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
           {/*Form to update user data*/}
           <UpdatedUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
           <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>

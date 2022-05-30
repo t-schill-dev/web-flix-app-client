@@ -9,9 +9,12 @@ export function UserData(props) {
         <Card className='bg-light text-black' border='black' style={{ textAlign: 'left', marginTop: 20 }}>
           <Card.Title style={{ marginTop: 10, textAlign: "center" }}>Profile</Card.Title>
           <Card.Body className='text-dark'>
-            <Card.Text>Username: {userdata.username}</Card.Text>
-            <Card.Text>Email: {userdata.email}</Card.Text>
-            <Card.Text>Birthday: {userdata.birthday}</Card.Text>
+            <label htmlFor='username' className='userdata-label'>Username:</label>
+            <Card.Text>{userdata.username}</Card.Text>
+            <label htmlFor='email' className='userdata-label'>Email:</label>
+            <Card.Text>{userdata.email}</Card.Text>
+            <label htmlFor='birthday' className='userdata-label'>Birthday:</label>
+            <Card.Text>{userdata.birthday}</Card.Text>
           </Card.Body>
         </Card>
       </Col>
