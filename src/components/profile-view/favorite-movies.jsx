@@ -35,7 +35,6 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
                       alt="movie poster"
                     />
                   </Carousel.Item>
-
                 )
               })
             )

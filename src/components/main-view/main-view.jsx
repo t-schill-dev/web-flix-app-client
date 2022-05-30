@@ -68,6 +68,24 @@ export class MainView extends React.Component {
     }
   };
 
+  //Yet to be implemented in movie and card view 
+
+  // addToFavoriteList(movieId) {
+  //   const user = localStorage.getItem('user');
+  //   const token = localStorage.getItem('token');
+
+
+  //   axios.put(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data)
+  //       alert(`The movie was successfully add to your list.`)
+  //     }).
+  //     catch(error => console.error(error))
+  // }
+
+
   render() {
     const { movies, user } = this.state;
 
@@ -93,7 +111,7 @@ export class MainView extends React.Component {
 
             return movies.map(m => (
               <Col md={3} sm={4} key={m._id} id='movie-card-main'>
-                <MovieCard movie={m} />
+                <MovieCard movie={m} addToFavoriteList={this.addToFavoriteList} />
               </Col>
             ))
           }} />
@@ -115,7 +133,7 @@ export class MainView extends React.Component {
 
             return <Col md={8}>
               <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}
-                onBackClick={() => history.goBack()} />
+                onBackClick={() => history.goBack()} addToFavoriteList={this.addToFavoriteList} />
             </Col>
           }} />
 
@@ -187,8 +205,8 @@ export class MainView extends React.Component {
       </Router>
 
     )
-  }
-};
+  };
+}
 
 
 MainView.propTypes = {
