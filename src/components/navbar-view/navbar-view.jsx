@@ -1,6 +1,6 @@
 import React from "react";
 import './navbar-view.scss';
-
+import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
 
 export function NavbarView({ user }) {
@@ -29,10 +29,10 @@ export function NavbarView({ user }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {isAuth() && (
-              <Nav.Link href={'/'}>Home</Nav.Link>
+              <Link to='/' className="nav-link">Home</Link>
             )}
             {isAuth() && (
-              <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+              <Link to={`/users/${user}`} className="nav-link">Profile</Link>
             )}
           </Nav>
           {isAuth() && (
@@ -47,13 +47,13 @@ export function NavbarView({ user }) {
             </Form>
           )}
           {isAuth() && (
-            <Button variant='link' onClick={() => { onLoggedOut() }}>Logout</Button>
+            <Button variant='link' onClick={() => { onLoggedOut() }} className="nav-link">Logout</Button>
           )}
           {!isAuth() && (
-            <Nav.Link href="/">Login</Nav.Link>
+            <Link to='/' className="nav-link">Login</Link>
           )}
           {!isAuth() && (
-            <Nav.Link href="/register">Sign-up</Nav.Link>
+            <Link to='/register' className="nav-link">Sign-up</Link>
           )}
 
         </Navbar.Collapse>
