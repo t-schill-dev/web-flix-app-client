@@ -3,6 +3,10 @@ import { Col, Row, Card } from 'react-bootstrap'
 
 export function UserData(props) {
   const userdata = props.userdata;
+
+  let birthDate = new Date(userdata.birthday);
+  let user_iso_date = birthDate.toLocaleDateString();
+
   return (
     <Row>
       <Col>
@@ -14,7 +18,7 @@ export function UserData(props) {
             <label htmlFor='email' className='userdata-label'>Email:</label>
             <Card.Text>{userdata.email}</Card.Text>
             <label htmlFor='birthday' className='userdata-label'>Birthday:</label>
-            <Card.Text>{userdata.birthday}</Card.Text>
+            <Card.Text>{user_iso_date}</Card.Text>
           </Card.Body>
         </Card>
       </Col>

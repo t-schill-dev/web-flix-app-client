@@ -13,6 +13,9 @@ export function ProfileView(props) {
   const user = props.user;
   const movies = props.movies;
 
+  let birthDate = new Date(user.birthdate);
+  let iso_date = birthDate.toLocaleDateString();
+
   const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
