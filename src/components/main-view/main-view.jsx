@@ -192,15 +192,6 @@ export class MainView extends React.Component {
             </Col>
           }} />
 
-          {/*UserUpdateRoute*/}
-          <Route path={`/user-update/${user}`}
-            render={({ match, history }) => {
-              if (!user) return <Redirect to="/" />
-              return <Col>
-                <UserUpdate user={user === match.params.username}
-                  onBackClick={() => history.goBack()} />
-              </Col>
-            }} />
         </Row>
       </Router>
 
