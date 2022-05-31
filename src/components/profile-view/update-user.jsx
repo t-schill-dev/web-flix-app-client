@@ -7,12 +7,10 @@ export function UpdateUser(props) {
 
   return (
     <>
-      <Col lg={12}>
+      <Col>
         <Row>
-          <Card className="bg-light text-black" border='danger' style={{ textAlign: 'left', marginTop: 20 }}>
-            <Card.Title style={{ marginTop: 10, textAlign: "center" }}>Update Profile</Card.Title>
-
-            <Form className="profile-form" onSubmit={(e) => handleSubmit(e)} border='danger' style={{ margin: 20 }}>
+          <Card className="bg-light" border='danger' style={{ textAlign: 'left' }}>
+            <Form className="profile-form text-dark" onSubmit={(e) => handleSubmit(e)} border='danger'>
 
               <Form.Group controlId="formUsername" className="mb-3">
                 <Form.Label>Username:</Form.Label>

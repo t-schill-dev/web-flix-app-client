@@ -11,6 +11,20 @@ $font: 'Fredoka';
     color: $text-color;
 }
 
+.profile-view {
+    min-height: 600px;
+}
+
+.card-title_profile {
+    color: $dark-text;
+    text-align: center;
+    background-color: #A5BECC;
+    border-radius: 2px;
+    padding: 5px;
+    margin-top: 15px;
+    height: 2.5rem;
+}
+
 #update-btn_primary {
     background-color: $button-color;
     border-color: #1E263D;

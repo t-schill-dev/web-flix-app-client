@@ -11,9 +11,9 @@ export function UserData(props) {
     <>
       <Col>
         <Row>
-          <Card className='bg-light text-black' border='black' style={{ textAlign: 'left', marginTop: 20 }}>
-            <Card.Title style={{ marginTop: 10, textAlign: "center" }}>Profile</Card.Title>
-            <Card.Body className='text-dark'>
+          <Card className='bg-light' border='black' >
+            <Card.Title className='text-dark' >Your info</Card.Title>
+            <Card.Body className='text-dark' style={{ textAlign: 'left' }}>
               <label htmlFor='username' className='userdata-label'>Username:</label>
               <Card.Text>{userdata.username}</Card.Text>
               <label htmlFor='email' className='userdata-label'>Email:</label>

@@ -13,42 +13,38 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
 
   return (
     <>
-      <Row>
-        <Col>
-          <h4 style={{ padding: 10 }}>Favorite Movies</h4>
-        </Col>
-      </Row>
-      <Row>
+      <Col>
+        <Row>
 
-        <Card>
-          <Carousel variant='dark' className='movie-carousel'>
-            {favoriteMoviesList.length === 0 ? (
-              <p>You have no favorite movies yet</p>
-            ) : (
-              favoriteMoviesList.map(movie => {
-                return (
+          <Card className='bg-light'>
+            <Card.Title className='text-dark' >Favorite Movies</Card.Title>
+            <Carousel variant='dark' className='movie-carousel'>
+              {favoriteMoviesList.length === 0 ? (
+                <p>You have no favorite movies yet</p>
+              ) : (
+                favoriteMoviesList.map(movie => {
+                  return (
 
-                  <Carousel.Item key={movie._id} className='text-center' >
-                    <Link to={`/movies/${movie._id}`}>
-                      <Card.Title className='text-dark'>{movie.title}</Card.Title>
-                    </Link>
-                    <img
-                      id='mini-movie-card_img'
-                      src={movie.imageUrl}
-                      alt="movie poster"
-                    />
-                  </Carousel.Item>
+                    <Carousel.Item key={movie._id} className='text-center' >
+                      <img
+                        id='mini-movie-card_img'
+                        src={movie.imageUrl}
+                        alt="movie poster"
+                      />
+                      <Link to={`/movies/${movie._id}`}>
+                        <Card.Subtitle variant='link' style={{ marginTop: 10 }}>{movie.title}</Card.Subtitle>
+                      </Link>
+                    </Carousel.Item>
 
-                )
-              })
-            )
-            }
-          </Carousel>
-          <Button variant='outline-danger' onClick={() => removeFav(movies._id)}>Remove from Favorites</Button>
-        </Card>
-
-
-      </Row>
+                  )
+                })
+              )
+              }
+            </Carousel>
+            <Button variant='outline-danger' onClick={() => removeFav(movies._id)}>Remove from Favorites</Button>
+          </Card>
+        </Row>
+      </Col>
     </>
   )
 }

@@ -88,14 +88,25 @@ export function ProfileView(props) {
           <h2 className='page-header'>Hi, {userdata.username}!</h2>
         </Col>
       </Row >
-      <Row className='justify-content-center profile-view' >
-        <Col>
-          <UserData id='user-data' userdata={userdata} />
-          <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
-          {/*Form to update user data*/}
-          <UpdateUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
-          <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>
+
+      <Row className='profile-view text-center' >
+        <h4 className='card-title_profile'>Profile</h4>
+        <Col md={5} xs={12}>
+          <UserData userdata={userdata} />
         </Col>
+        <Col md={{ span: 5, offset: 2 }} xs={12}>
+          <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
+        </Col>
+
+      </Row>
+      <Row style={{ marginTop: 20 }}>
+        {/*Form to update user data*/}
+        <h4 className='card-title_profile'>Update Profile</h4>
+        <Col>
+          <UpdateUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
+        </Col>
+        <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>
+
 
       </Row >
     </>
