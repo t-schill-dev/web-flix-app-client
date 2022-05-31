@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Row, Card, Button, Carousel, CarouselItem } from 'react-bootstrap';
+import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
 export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
 
@@ -27,14 +27,18 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
             ) : (
               favoriteMoviesList.map(movie => {
                 return (
+
                   <Carousel.Item key={movie._id} className='text-center' >
-                    <Card.Title className='text-dark'>{movie.title}</Card.Title>
+                    <Link to={`/movies/${movie._id}`}>
+                      <Card.Title className='text-dark'>{movie.title}</Card.Title>
+                    </Link>
                     <img
                       id='mini-movie-card_img'
                       src={movie.imageUrl}
                       alt="movie poster"
                     />
                   </Carousel.Item>
+
                 )
               })
             )
