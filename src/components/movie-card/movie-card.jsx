@@ -12,11 +12,11 @@ export class MovieCard extends React.Component {
     return (
 
       <Card id='movie-card'>
-        <Card.Img fluid='true' id='movie-card_img' className='text-center' variant='top' src={movie.imageUrl} />
+        <Card.Img fluid='true' className='text-center' variant='top' src={movie.imageUrl} />
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Subtitle className='text-muted'>{movie.year}</Card.Subtitle>
-          <Card.Text className='movie-plot'>{movie.plot}</Card.Text>
+          <Card.Text>{movie.genres.map((genre) => genre + ' ')}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
             <Button id='details-btn' variant='link'>Details</Button>
           </Link>

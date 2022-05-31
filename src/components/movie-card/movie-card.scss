@@ -1,15 +1,16 @@
 $background-color: #1E263D;
 $underline-color: rgba(25, 200, 185, 0.8);
 #movie-card {
-    height: 750px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background-color: $background-color;
     border: solid 1px $underline-color;
-}
-
-#movie-card_img {
-    height: 400px;
-    width: 100%;
-    margin: auto;
+    img {
+        height: 400px;
+    }
 }
 
 // .movie-plot {
