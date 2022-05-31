@@ -90,7 +90,7 @@ export function ProfileView(props) {
       </Row>
       <Row className='justify-content-center profile-view' >
 
-        <Button id='return-button' onClick={() => { onBackClick() }}>Back</Button>
+
         <Col>
           <UserData id='user-data' userdata={userdata} />
           <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
