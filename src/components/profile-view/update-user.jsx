@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Col, Row, Card } from 'react-bootstrap';
 
-export function UpdatedUser(props) {
+export function UpdateUser(props) {
   const user = props.userdata;
   const { handleSubmit, handleUpdate } = props;
 

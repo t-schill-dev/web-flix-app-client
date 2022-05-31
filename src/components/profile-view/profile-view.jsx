@@ -5,16 +5,13 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import './profile-view.scss';
 
 import { UserData } from './user-data';
-import { UpdatedUser } from './update-user';
+import { UpdateUser } from './update-user';
 import { FavoriteMovies } from './favorite-movies';
 
 export function ProfileView(props) {
 
   const user = props.user;
   const movies = props.movies;
-
-  let birthDate = new Date(user.birthdate);
-  let iso_date = birthDate.toLocaleDateString();
 
   const [userdata, setuserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
@@ -85,25 +82,23 @@ export function ProfileView(props) {
   }
 
   return (
-    <Container className='view-container' fluid>
-      <Row>
-        <Col>
-          <h4 className='text-dark'>Hi, {userdata.username}</h4>
+    <>
+      <Row >
+        <Col >
+          <h2 className='page-header'>Hi, {userdata.username}!</h2>
         </Col>
-      </Row>
+      </Row >
       <Row className='justify-content-center profile-view' >
-
-
         <Col>
           <UserData id='user-data' userdata={userdata} />
           <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
           {/*Form to update user data*/}
-          <UpdatedUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
+          <UpdateUser userdata={userdata} handleSubmit={handleSubmit} handleUpdate={handleUpdate} />
           <Button variant='danger' type='submit' onClick={deleteProfile}>Delete profile</Button>
         </Col>
 
       </Row >
-    </Container >
+    </>
   );
 };
 

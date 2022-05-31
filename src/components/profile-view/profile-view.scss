@@ -6,9 +6,9 @@ $button-hover: rgba(25, 200, 185, 1);
 $text-color: #F7F7F7;
 $dark-text: #1E263D;
 $font: 'Fredoka';
-.view-container {
-    background-color: #E4E4E4;
-    margin-top: 100px;
+.page-header {
+    margin-top: 80px;
+    color: $text-color;
 }
 
 #update-btn_primary {

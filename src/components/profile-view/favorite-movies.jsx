@@ -15,7 +15,7 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
     <>
       <Row>
         <Col>
-          <h4 className='text-dark' style={{ padding: 10 }}>Favorite Movies</h4>
+          <h4 style={{ padding: 10 }}>Favorite Movies</h4>
         </Col>
       </Row>
       <Row>

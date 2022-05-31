@@ -1,6 +1,6 @@
 $background-dark: #1E263D;
 $background-light: #E4E4E4;
-$button-color: rgba(25, 200, 185, 0.7);
+$button-color: rgba(25, 200, 185, 0.6);
 $favorite-star: #FFD700;
 $buttons-inactive: #E4E4E4;
 $button-hover: rgba(25, 200, 185, 1);
@@ -42,9 +42,6 @@ sans-serif;
     background-color: $button-color;
     height: auto;
     width: 70px;
-    position: absolute;
-    top: 1rem;
-    right: 3px;
     padding: 3px;
     &:hover {
         background-color: $button-hover;

@@ -13,12 +13,10 @@ export class MovieView extends React.Component {
 
         <Card id='movie-view' className='justify-content-center'>
           <div className='movie-header'>
-            <Card.Header className='movie-title'>{movie.title} ({movie.year})</Card.Header>
-            <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+            <Card.Header className='movie-title md-6'>{movie.title} ({movie.year})</Card.Header>
+            <Button md={6} id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
           </div>
-          <div id='image-wrapper'>
 
-          </div>
           <Card.Body >
             <Card.Img id='movie-poster' src={movie.imageUrl} alt='Movie poster'></Card.Img>
             <div>
