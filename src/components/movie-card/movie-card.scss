@@ -1,0 +1,21 @@
+$background-color: #1E263D;
+$underline-color: rgba(25, 200, 185, 0.8);
+#movie-card {
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: $background-color;
+    border: solid 1px $underline-color;
+    img {
+        height: 400px;
+    }
+}
+
+#details-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: $underline-color;
+}
