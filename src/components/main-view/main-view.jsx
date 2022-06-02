@@ -2,8 +2,10 @@ import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setMovies } from '../../actions/actions';
+// import MoviesList from '..movies-list/movies-list';
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
@@ -16,11 +18,10 @@ import './main-view.scss';
 
 
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      movies: [],
       user: props.user
     }
   }
@@ -49,9 +50,7 @@ export class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -87,7 +86,8 @@ export class MainView extends React.Component {
 
 
   render() {
-    const { movies, user } = this.state;
+    const { movies } = this.props;
+    const { user } = this.state;
 
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
@@ -111,7 +111,7 @@ export class MainView extends React.Component {
 
             return movies.map(m => (
               <Col md={3} sm={4} key={m._id} id='movie-card-main'>
-                <MovieCard movie={m} addToFavoriteList={this.addToFavoriteList} />
+                <MovieList movie={m} addToFavoriteList={this.addToFavoriteList} />
               </Col>
             ))
           }} />
@@ -199,6 +199,11 @@ export class MainView extends React.Component {
   };
 }
 
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
 
 MainView.propTypes = {
   user: PropTypes.shape({
