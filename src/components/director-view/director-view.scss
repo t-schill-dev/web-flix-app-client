@@ -14,16 +14,8 @@ sans-serif;
     color: $dark-text;
 }
 
-.page-title {
-    font-size: 2rem;
-    font-weight: 400;
-    color: $text-color;
-}
-
-#movie-poster {
-    width: 200px;
-    height: 300px;
-    padding: 5px;
+.view-header {
+    border-bottom: 1px ridge #1E263D;
 }
 
 .label {
@@ -39,9 +31,6 @@ sans-serif;
     background-color: $button-color;
     height: auto;
     width: 70px;
-    position: absolute;
-    top: 1rem;
-    right: 10px;
     padding: 3px;
     &:hover {
         background-color: $button-hover;

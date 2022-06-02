@@ -16,7 +16,7 @@ export class MovieView extends React.Component {
             {movie.title} ({movie.year})
           </Col>
           <Col md={1}>
-            <div className='justify-end'>
+            <div>
               <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
             </div>
           </Col>

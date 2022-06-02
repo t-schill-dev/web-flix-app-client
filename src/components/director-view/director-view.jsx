@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Button, Card } from 'react-bootstrap';
+import { Row, Col, Button, Card } from 'react-bootstrap';
 import './director-view.scss';
 
 
@@ -15,10 +15,16 @@ export function DirectorView(props) {
 
     <Row id='movie-director'>
       <Card >
-        <div>
-          <Card.Header className='movie-title'>{director.name}</Card.Header>
-          <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-        </div>
+        <Row className='view-header'>
+          <Col id='movie-title' md={10}>
+            {director.name}
+          </Col>
+          <Col md={1}>
+            <div >
+              <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+            </div>
+          </Col>
+        </Row>
         <Card.Body >
           <label htmlFor='bio' className='label'>Biography: </label>
           <Card.Text className='value'>{director.bio}</Card.Text>

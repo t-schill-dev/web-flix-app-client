@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Carousel, Card } from 'react-bootstrap';
+import { Container, Col, Row, Button, Carousel, Card } from 'react-bootstrap';
 import './actors-view.scss';
 
 
@@ -15,11 +15,16 @@ export class ActorsView extends React.Component {
         <Container >
           <Row >
             <Card id='actor-view'>
-              <div>
-                <Card.Header className='card-title'>{actorName}</Card.Header>
-
-                <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-              </div>
+              <Row className='view-header'>
+                <Col md={10}>
+                  {actorName}
+                </Col>
+                <Col md={1}>
+                  <div >
+                    <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+                  </div>
+                </Col>
+              </Row>
               <Card.Text className='text-muted subtitle'>More movies of that actor:</Card.Text>
               <Carousel variant='dark' className='movie-carousel'>
                 {movies.map((movie) => {
