@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setMovies } from '../../actions/actions';
-import { MoviesList } from '../movies-list/movies-list';
+import MoviesList from '../movies-list/movies-list';
 import { LoginView } from '../login-view/login-view';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
@@ -109,11 +109,11 @@ class MainView extends React.Component {
             )
             if (movies.length === 0) return <div className='main-view' />;
 
-            return movies.map(m => (
-              <Col md={3} sm={4} key={m._id} id='movie-card-main'>
-                <MoviesList movie={m} addToFavoriteList={this.addToFavoriteList} />
-              </Col>
-            ))
+            return (
+
+              <MoviesList movies={movies} />
+
+            )
           }} />
 
           {/*RegisterRoute*/}
