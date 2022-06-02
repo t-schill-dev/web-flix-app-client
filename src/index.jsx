@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import MainView from './components/main-view/main-view';
 import Container from 'react-bootstrap/Container';
 import { legacy_createStore } from 'redux'
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux'
 import moviesApp from './reducers/reducers';
