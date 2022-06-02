@@ -2,6 +2,7 @@ import React from "react";
 import './navbar-view.scss';
 import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
 
 export function NavbarView({ user }) {
   function onLoggedOut() {
@@ -37,13 +38,8 @@ export function NavbarView({ user }) {
           </Nav>
           {isAuth() && (
             <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
+              <VisibilityFilterInput
               />
-              <Button id='search-button' variant="outline-success">Search</Button>
             </Form>
           )}
           {isAuth() && (
