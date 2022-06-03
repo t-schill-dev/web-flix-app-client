@@ -56,7 +56,6 @@ export class MovieCard extends React.Component {
   }
 
   iconHandle(movieId) {
-    console.log('favorite movies is ' + this.props.favorites)
     if (this.props.favorites.includes(movieId)) {
       return heartFull;
     } else {
@@ -72,7 +71,7 @@ export class MovieCard extends React.Component {
 
       <Card id='movie-card'>
         <div className='poster-wrapper'>
-          <Card.Img className='text-center' variant='top' src={movie.imageUrl} />
+          <Card.Img className='text-center  poster-img' variant='top' src={movie.imageUrl} />
         </div>
         <a
           href="#"

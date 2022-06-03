@@ -2,26 +2,21 @@ $background-color: #1E263D;
 $underline-color: rgba(25, 200, 185, 0.8);
 #movie-card {
     margin-bottom: 15px;
+    background-color: $background-color;
+    border: solid 1px $underline-color;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background-color: $background-color;
-    border: solid 1px $underline-color;
-    img {
-        height: 400px;
+    .poster-wrapper>img {
+        height: 350px;
     }
-}
-
-.poster-wrapper {
-    position: relative;
 }
 
 #fav-icon {
     position: absolute;
     top: 10px;
     right: 5px;
-    z-index: 1000;
     height: 30px;
     width: 30px;
 }
