@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { MovieCard } from '../movie-card/movie-card';
 
 function MoviesList(props) {
-  const { movies, visibilityFilter } = props;
+  const { movies, visibilityFilter, favorites, user } = props;
   let filteredMovies = movies;
 
 

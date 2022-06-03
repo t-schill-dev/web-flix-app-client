@@ -44,6 +44,7 @@ export function LoginView(props) {
         const data = response.data;
         /* Data including the token will be passed to parent component */
         props.onLoggedIn(data)
+
       })
         .catch(e => {
           alert('This user does not exist');
