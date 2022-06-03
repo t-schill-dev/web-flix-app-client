@@ -13,8 +13,10 @@ function MoviesList(props) {
   const { movies, visibilityFilter } = props;
   let filteredMovies = movies;
 
+
   if (visibilityFilter !== '') {
     filteredMovies = movies.filter(m => m.title.toLowerCase().includes(visibilityFilter.toLowerCase()));
+
   }
 
   if (!movies) return < div className='main-view' />;
@@ -23,7 +25,7 @@ function MoviesList(props) {
     <>
 
       {filteredMovies.map(m => (
-        <Col md={3} key={m._id} id='movie-card-main'>
+        <Col xl={2} lg={3} sm={6} key={m._id} id='movie-card-main'>
           <MovieCard movie={m} />
         </Col>
       ))}
