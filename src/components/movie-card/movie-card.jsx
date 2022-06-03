@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 //redux action
-import { toggleFavorite } from '../../actions/actions'
+import { toggleFavorites } from '../../actions/actions'
 
 //favorite asset images
 import heartEmpty from '../../img/heart-empty.png';
@@ -13,12 +13,12 @@ import heartFull from '../../img/heart-full.png';
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieId: ''
-    }
-  }
+  constructor() {
+    super();
+
+  };
+
+  user = this.props;
 
   addToFavoriteList(movieId) {
 
@@ -46,25 +46,34 @@ export class MovieCard extends React.Component {
 
   favMovieClick(e) {
     e.preventDefault();
-    let movId = this.props.movie._id;
+    const movId = this.props.movie._id;
     if (this.props.favorites.includes(movId)) {
       this.removeFromFavoriteList(movId);
-      return heartEmpty
     } else {
       this.addToFavoriteList(movId);
-      return heartFull;
     }
-    this.props.toggleFavorite(movId)
+    this.props.toggleFavorite(movId);
+  }
+
+  iconHandle(movieId) {
+    console.log('favorite movies is ' + this.props.favorites)
+    if (this.props.favorites.includes(movieId)) {
+      return heartFull;
+    } else {
+      return heartEmpty;
+    }
   }
 
   render() {
-    const { movie, user } = this.props;
+    const { movie } = this.props;
 
 
     return (
 
       <Card id='movie-card'>
-        <Card.Img className='text-center' variant='top' src={movie.imageUrl} />
+        <div className='poster-wrapper'>
+          <Card.Img className='text-center' variant='top' src={movie.imageUrl} />
+        </div>
         <a
           href="#"
           onClick={(e) => this.favMovieClick(e)}
@@ -73,8 +82,8 @@ export class MovieCard extends React.Component {
           title="Add to Favorites"
         >
           <img
-            src={this.favMovieClick(movie._id)}
-            className="fav-icon"
+            src={this.iconHandle(movie._id)}
+            id="fav-icon"
             alt="cam"
           />
         </a>
@@ -92,6 +101,17 @@ export class MovieCard extends React.Component {
     )
   }
 };
+
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    favorites: state.favorites,
+  };
+};
+
+export default connect(mapStateToProps, {
+  toggleFavorites,
+})(MovieCard);
 
 MovieCard.propTypes = {
   movie: PropTypes.exact({

@@ -21,7 +21,7 @@ function MoviesList(props) {
 
       {filteredMovies.map(m => (
         <Col xl={2} lg={3} sm={6} key={m._id} id='movie-card-main'>
-          <MovieCard movie={m} user={user} />
+          <MovieCard movie={m} user={user} favorites={favorites} />
         </Col>
       ))}
 
