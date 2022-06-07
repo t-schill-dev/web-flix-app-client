@@ -2,7 +2,7 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { MovieCard } from '../movie-card/movie-card';
+import MovieCard from '../movie-card/movie-card';
 
 function MoviesList(props) {
   const { movies, visibilityFilter, favorites, user } = props;

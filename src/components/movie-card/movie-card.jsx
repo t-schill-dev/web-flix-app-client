@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios'
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -12,16 +13,12 @@ import heartEmpty from '../../img/heart-empty.png';
 import heartFull from '../../img/heart-full.png';
 import './movie-card.scss';
 
-export class MovieCard extends React.Component {
-  constructor() {
-    super();
+function MovieCard(props) {
 
-  };
+  const { user, movie, favorites } = props;
+  const token = localStorage.getItem('token');
 
-  user = this.props;
-
-  addToFavoriteList(movieId) {
-
+  const addToFavoriteList = (movieId) => {
     axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -32,7 +29,7 @@ export class MovieCard extends React.Component {
       catch(error => console.error(error))
   };
 
-  removeFromFavoriteList(movieId) {
+  const removeFromFavoriteList = (movieId) => {
 
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -44,67 +41,64 @@ export class MovieCard extends React.Component {
       catch(error => console.error(error))
   };
 
-  favMovieClick(e) {
+  const favMovieClick = (e) => {
     e.preventDefault();
-    const movId = this.props.movie._id;
-    if (this.props.favorites.includes(movId)) {
-      this.removeFromFavoriteList(movId);
+    const movId = movie._id;
+    if (favorites.includes(movId)) {
+      removeFromFavoriteList(movId);
     } else {
-      this.addToFavoriteList(movId);
+      addToFavoriteList(movId);
     }
-    this.props.toggleFavorite(movId);
+    toggleFavorites(movId);
   }
 
-  iconHandle(movieId) {
-    if (this.props.favorites.includes(movieId)) {
+  const iconHandle = (movieId) => {
+    if (favorites.includes(movieId)) {
       return heartFull;
     } else {
       return heartEmpty;
     }
   }
 
-  render() {
-    const { movie } = this.props;
 
+  return (
 
-    return (
+    <Card id='movie-card'>
+      <div className='poster-wrapper'>
+        <Card.Img className='text-center  poster-img' variant='top' src={movie.imageUrl} />
+      </div>
+      <a
+        href="#"
+        onClick={(e) => favMovieClick(e)}
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Add to Favorites"
+      >
+        <img
+          src={iconHandle(movie._id)}
+          id="fav-icon"
+          alt="cam"
+        />
+      </a>
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Subtitle className='text-muted'>{movie.year}</Card.Subtitle>
+        <Card.Text>{movie.genres.map((genre) => genre + ' ')}</Card.Text>
+        <Link to={`/movies/${movie._id}`}>
+          <Button id='details-btn' variant='link'>Details</Button>
+        </Link>
 
-      <Card id='movie-card'>
-        <div className='poster-wrapper'>
-          <Card.Img className='text-center  poster-img' variant='top' src={movie.imageUrl} />
-        </div>
-        <a
-          href="#"
-          onClick={(e) => this.favMovieClick(e)}
-          data-toggle="tooltip"
-          data-placement="top"
-          title="Add to Favorites"
-        >
-          <img
-            src={this.iconHandle(movie._id)}
-            id="fav-icon"
-            alt="cam"
-          />
-        </a>
-        <Card.Body>
-          <Card.Title>{movie.title}</Card.Title>
-          <Card.Subtitle className='text-muted'>{movie.year}</Card.Subtitle>
-          <Card.Text>{movie.genres.map((genre) => genre + ' ')}</Card.Text>
-          <Link to={`/movies/${movie._id}`}>
-            <Button id='details-btn' variant='link'>Details</Button>
-          </Link>
+      </Card.Body>
+    </Card>
 
-        </Card.Body>
-      </Card>
-
-    )
-  }
+  )
 };
 
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     favorites: state.favorites,
+    user: state.user
   };
 };
 
