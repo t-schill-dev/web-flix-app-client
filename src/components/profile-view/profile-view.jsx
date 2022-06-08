@@ -78,8 +78,10 @@ function ProfileView(props) {
   }
 
   const removeFav = (id) => {
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userdata.username}/movies/${id}}`)
+    console.log('movie id in function is' + id)
+    axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${id}}`)
       .then(() => {
+        console.log('Movie has been deleted');
         setFavoriteMovies(favoriteMovies.filter(movie => movie._id != id));
         getUserData(user);
       })
@@ -101,7 +103,7 @@ function ProfileView(props) {
         <Col md={5} xs={12}>
           <UserData userdata={userdata} />
         </Col>
-        <Col md={{ span: 5, offset: 2 }} xs={12}>
+        <Col md={{ span: 7 }} xs={12}>
           <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
         </Col>
 

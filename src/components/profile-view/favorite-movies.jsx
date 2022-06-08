@@ -7,9 +7,10 @@ import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
 
 
-  console.log(favoriteMovies)
+
 
   const favoriteMoviesList = movies.filter(m => {
+
     return favoriteMovies.includes(m._id)
   })
   return (
@@ -26,25 +27,22 @@ function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
                 favoriteMoviesList.map(movie => {
                   return (
 
-                    <Carousel.Item key={movie.id} className='text-center' >
+                    <Carousel.Item key={movie._id} className='text-center' >
                       <img
                         id='mini-movie-card_img'
                         src={movie.imageUrl}
                         alt="movie poster"
                       />
-                      <Link to={`/movies/${movie.id}`}>
-                        <h6 variant='link' style={{ marginTop: 10 }}>{movie.title}</h6>
+                      <Link to={`/movies/${movie._id}`}>
+                        <h6 style={{ marginTop: 10 }}>{movie.title}</h6>
                       </Link>
+                      <Button className='removeFav__button' variant='outline-danger' onClick={() => removeFav(movie._id)}>Remove from Favorites</Button>
                     </Carousel.Item>
-
                   )
-
                 })
-
               )
               }
             </Carousel>
-            <Button variant='outline-danger' onClick={() => removeFav(movies._id)}>Remove from Favorites</Button>
           </Card>
         </Row>
       </Col>
