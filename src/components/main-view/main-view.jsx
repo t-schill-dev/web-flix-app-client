@@ -11,7 +11,7 @@ import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { ProfileView } from '../profile-view/profile-view';
+import ProfileView from '../profile-view/profile-view';
 import { ActorsView } from '../actors-view/actors-view';
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
@@ -175,7 +175,7 @@ class MainView extends React.Component {
 
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView user={user} movies={movies} favorites={favorites}
+              <ProfileView movies={movies} user={user}
               />
             </Col>
           }} />

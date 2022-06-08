@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Button, Row, Col } from 'react-bootstrap';
 import './profile-view.scss';
+//import redux modules
+import { connect } from 'react-redux';
+import { setUser, setFavorites } from '../../actions/actions';
 
 import { UserData } from './user-data';
 import { UpdateUser } from './update-user';
-import { FavoriteMovies } from './favorite-movies';
+import FavoriteMovies from './favorite-movies';
 
-export function ProfileView(props) {
+
+function ProfileView(props) {
 
   const user = props.user;
   const movies = props.movies;
 
   const [userdata, setuserdata] = useState({});
-  const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   let token = localStorage.getItem('token');
@@ -25,8 +28,9 @@ export function ProfileView(props) {
 
       .then(res => {
         setuserdata(res.data);
-        setUpdatedUser(res.data);
         setFavoriteMovies(res.data.favoriteMovies);
+
+        console.log(userdata);
       })
       .catch(err => {
 
@@ -35,31 +39,33 @@ export function ProfileView(props) {
   }
   // Load it once per rendering by adding []
   useEffect(() => {
-    getUserData(user)
+    getUserData(user);
+
   }, [])
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`, updatedUser)
-      .then(response => {
-        setuserdata(response.data);
+    axios.put(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`, userdata)
+      .then(() => {
         alert('Profile updated')
+        getUserData(user);
       })
       .catch(e => {
         console.log(e);
       })
   };
   const handleUpdate = (e) => {
-    setUpdatedUser({
-      ...updatedUser,
+    setuserdata({
+      ...userdata,
       [e.target.name]: e.target.value
     });
+
   }
 
   const deleteProfile = () => {
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`)
-      .then(res => {
+      .then(() => {
         alert("Your profile has been deleted");
         localStorage.removeItem('user');
         localStorage.removeItem('token')
@@ -74,7 +80,8 @@ export function ProfileView(props) {
   const removeFav = (id) => {
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${userdata.username}/movies/${id}}`)
       .then(() => {
-        setFavoriteMovies(favoriteMovies.filter(movie => movie._id != id))
+        setFavoriteMovies(favoriteMovies.filter(movie => movie._id != id));
+        getUserData(user);
       })
       .catch(e => {
         console.log(e)
@@ -112,7 +119,16 @@ export function ProfileView(props) {
     </>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.favorites,
+    user: state.user
+  };
+};
 
+export default connect(mapStateToProps, {
+  setFavorites, setUser
+})(ProfileView);
 ProfileView.propTypes = {
   userdata: PropTypes.shape({
     username: PropTypes.string.isRequired,

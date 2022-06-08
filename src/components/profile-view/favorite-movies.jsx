@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { setFavorites, setUser } from '../../actions/actions';
+import { connect } from 'react-redux';
 import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
-export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
+function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
 
 
-  const favoriteMoviesId = favoriteMovies.map(m => m._id)
+  console.log(favoriteMovies)
 
   const favoriteMoviesList = movies.filter(m => {
-    return favoriteMoviesId.includes(m._id)
+    return favoriteMovies.includes(m._id)
   })
-
   return (
     <>
       <Col>
@@ -25,19 +26,21 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
                 favoriteMoviesList.map(movie => {
                   return (
 
-                    <Carousel.Item key={movie._id} className='text-center' >
+                    <Carousel.Item key={movie.id} className='text-center' >
                       <img
                         id='mini-movie-card_img'
                         src={movie.imageUrl}
                         alt="movie poster"
                       />
-                      <Link to={`/movies/${movie._id}`}>
-                        <Card.Subtitle variant='link' style={{ marginTop: 10 }}>{movie.title}</Card.Subtitle>
+                      <Link to={`/movies/${movie.id}`}>
+                        <h6 variant='link' style={{ marginTop: 10 }}>{movie.title}</h6>
                       </Link>
                     </Carousel.Item>
 
                   )
+
                 })
+
               )
               }
             </Carousel>
@@ -48,3 +51,14 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
     </>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.favorites,
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps, {
+  setFavorites, setUser
+})(FavoriteMovies);
