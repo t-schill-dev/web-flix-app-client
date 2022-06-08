@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios'
+import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 //redux action
-import { toggleFavorites } from '../../actions/actions'
+import { setFavorites, toggleFavorites } from '../../actions/actions'
 
 //favorite asset images
 import heartEmpty from '../../img/heart-empty.png';
@@ -19,11 +19,12 @@ function MovieCard(props) {
   const token = localStorage.getItem('token');
 
   const addToFavoriteList = (movieId) => {
-    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, '', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
-        console.log(response)
+        console.log(response);
+        setFavorites(response.data)
         alert(`The movie was successfully add to your list.`)
       }).
       catch(error => console.error(error))
@@ -35,7 +36,7 @@ function MovieCard(props) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
-        console.log(response.data)
+        setFavorites(response.data.favoriteMovies)
         alert(`The movie was successfully deleted from your list.`)
       }).
       catch(error => console.error(error))
@@ -52,8 +53,10 @@ function MovieCard(props) {
     toggleFavorites(movId);
   }
 
-  const iconHandle = (movieId) => {
+  function iconHandle(movieId) {
+    console.log(favorites)
     if (favorites.includes(movieId)) {
+
       return heartFull;
     } else {
       return heartEmpty;

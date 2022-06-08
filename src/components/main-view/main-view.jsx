@@ -175,7 +175,7 @@ class MainView extends React.Component {
 
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView user={user} movies={movies}
+              <ProfileView user={user} movies={movies} favorites={favorites}
               />
             </Col>
           }} />
