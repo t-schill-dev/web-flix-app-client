@@ -29,6 +29,7 @@ export function UpdateUser(props) {
                   name='Password'
                   placeholder="New Password (required when updating profile info)"
                   onChange={e => handleUpdate(e)}
+                  required
                 />
               </Form.Group>
 
