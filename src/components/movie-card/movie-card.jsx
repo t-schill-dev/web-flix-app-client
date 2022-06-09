@@ -14,7 +14,7 @@ import heartFull from '../../img/heart-full.png';
 import './movie-card.scss';
 
 function MovieCard(props) {
-
+  //Declaring states as props from redux store through connect()
   const { user, movie, favorites } = props;
   const token = localStorage.getItem('token');
 
@@ -23,7 +23,7 @@ function MovieCard(props) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
-        console.log('added' + response.data.favoriteMovies)
+        //update state with new Info
         setFavorites(response.data.favoriteMovies)
         alert(`The movie was successfully added to your list.`)
       }).
@@ -36,13 +36,13 @@ function MovieCard(props) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
-
+        //update state with new Info by creating new array where the prop isn't matching the existing state
         setFavorites(favorites.filter(favId => favId != movieId))
         alert(`The movie was successfully deleted from your list.`)
       }).
       catch(error => console.error(error))
   };
-
+  //Handles click on heart icon Component
   const favMovieClick = (e) => {
     e.preventDefault();
     const movId = movie._id;
@@ -51,11 +51,12 @@ function MovieCard(props) {
     } else {
       addToFavoriteList(movId);
     }
+    //By calling reducer function the icon change and favorite state is handled
     props.toggleFavorites(movId);
   }
-
+  //extra function to handle icon for event. 
+  //Can not be implemented in favMovieClick because of return statements
   function iconHandle(movieId) {
-
     if (favorites.includes(movieId)) {
       return heartFull;
     } else {
@@ -65,7 +66,6 @@ function MovieCard(props) {
 
 
   return (
-
     <Card id='movie-card'>
       <div className='poster-wrapper'>
         <Card.Img className='text-center  poster-img' variant='top' src={movie.imageUrl} />
@@ -96,7 +96,7 @@ function MovieCard(props) {
 
   )
 };
-
+//Making states available as props in the component
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,

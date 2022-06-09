@@ -63,7 +63,7 @@ class MainView extends React.Component {
       .catch((e) => console.log(e))
   }
 
-  // Fetching the access token from local storage
+  // Fetching the access token from local storage after element is on DOM
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {

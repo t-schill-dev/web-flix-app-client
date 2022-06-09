@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
 function FavoriteMovies(props) {
+
+  //Declaring states as props from redux store through connect()
   const { removeFav, movies, favorites } = props;
 
   const favoriteMoviesList = movies.filter(m => {
@@ -13,16 +15,15 @@ function FavoriteMovies(props) {
     <>
       <Col>
         <Row>
-
           <Card className='bg-light'>
             <Card.Title className='text-dark' >Favorite Movies</Card.Title>
             <Carousel variant='dark' className='movie-carousel'>
               {favoriteMoviesList.length === 0 ? (
                 <p>You have no favorite movies yet</p>
               ) : (
+                //looping function over each item of the list
                 favoriteMoviesList.map(movie => {
                   return (
-
                     <Carousel.Item key={movie._id} className='text-center' >
                       <img
                         id='mini-movie-card_img'

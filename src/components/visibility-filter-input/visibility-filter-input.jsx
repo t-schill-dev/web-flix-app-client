@@ -14,5 +14,5 @@ function VisibilityFilterInput(props) {
     aria-label="Search"
   />;
 }
-
+//Implemented in NavBar Component
 export default connect(null, { setFilter })(VisibilityFilterInput);
