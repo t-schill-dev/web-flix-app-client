@@ -4,14 +4,11 @@ import { setFavorites, setUser } from '../../actions/actions';
 import { connect } from 'react-redux';
 import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
-function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
+function FavoriteMovies({ removeFav, movies, favorites }) {
 
-
-
-
+  console.log('state favorites in favMov: ' + favorites)
   const favoriteMoviesList = movies.filter(m => {
-
-    return favoriteMovies.includes(m._id)
+    return favorites.includes(m._id)
   })
   return (
     <>
@@ -57,6 +54,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  setFavorites, setUser
-})(FavoriteMovies);
+export default connect(mapStateToProps)(FavoriteMovies);

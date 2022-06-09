@@ -14,11 +14,10 @@ import FavoriteMovies from './favorite-movies';
 
 function ProfileView(props) {
 
-  const user = props.user;
-  const movies = props.movies;
+  const { user, movies, favorites } = props;
 
   const [userdata, setuserdata] = useState({});
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
+  //const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   let token = localStorage.getItem('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -28,9 +27,9 @@ function ProfileView(props) {
 
       .then(res => {
         setuserdata(res.data);
-        setFavoriteMovies(res.data.favoriteMovies);
+        setFavorites(res.data.favoriteMovies);
 
-        console.log(userdata);
+        console.log('favorites in get User:' + favorites);
       })
       .catch(err => {
 
@@ -81,8 +80,7 @@ function ProfileView(props) {
     console.log('movie id in function is' + id)
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${id}`)
       .then(() => {
-        console.log('Movie has been deleted');
-        setFavoriteMovies(favoriteMovies.filter(movie => movie._id != id));
+        setFavorites(favorites.filter(favId => favId != id));
         getUserData(user);
       })
       .catch(e => {
@@ -104,7 +102,7 @@ function ProfileView(props) {
           <UserData userdata={userdata} />
         </Col>
         <Col md={{ span: 7 }} xs={12}>
-          <FavoriteMovies movies={movies} favoriteMovies={favoriteMovies} removeFav={removeFav} />
+          <FavoriteMovies movies={movies} removeFav={removeFav} />
         </Col>
 
       </Row>

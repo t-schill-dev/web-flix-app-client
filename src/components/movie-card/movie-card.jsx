@@ -23,9 +23,8 @@ function MovieCard(props) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
-        console.log(response);
-        setFavorites(response.data)
-        alert(`The movie was successfully add to your list.`)
+        setFavorites(response.data.favoriteMovies)
+        alert(`The movie was successfully added to your list.`)
       }).
       catch(error => console.error(error))
   };
@@ -35,8 +34,8 @@ function MovieCard(props) {
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then((response) => {
-        setFavorites(response.data.favoriteMovies)
+      .then(() => {
+        setFavorites(favorites.filter(favId => favId != movieId))
         alert(`The movie was successfully deleted from your list.`)
       }).
       catch(error => console.error(error))
@@ -54,9 +53,8 @@ function MovieCard(props) {
   }
 
   function iconHandle(movieId) {
-    console.log(favorites)
-    if (favorites.includes(movieId)) {
 
+    if (favorites.includes(movieId)) {
       return heartFull;
     } else {
       return heartEmpty;
@@ -75,7 +73,7 @@ function MovieCard(props) {
         onClick={(e) => favMovieClick(e)}
         data-toggle="tooltip"
         data-placement="top"
-        title="Add to Favorites"
+        title="Favorites"
       >
         <img
           src={iconHandle(movie._id)}
@@ -106,7 +104,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  toggleFavorites,
+  toggleFavorites, setFavorites
 })(MovieCard);
 
 MovieCard.propTypes = {

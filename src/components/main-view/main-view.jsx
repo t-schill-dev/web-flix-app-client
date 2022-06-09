@@ -52,7 +52,7 @@ class MainView extends React.Component {
   };
 
   getFavorites(token) {
-    this.props.setFavorites('');
+
     let user = localStorage.getItem('user');
     axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -75,7 +75,7 @@ class MainView extends React.Component {
 
 
   render() {
-    const { movies, user, favorites } = this.props;
+    const { movies, user } = this.props;
 
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
@@ -99,7 +99,7 @@ class MainView extends React.Component {
 
             return (
 
-              <MoviesList movies={movies} user={user} favorites={favorites} />
+              <MoviesList movies={movies} user={user} />
 
             )
           }} />

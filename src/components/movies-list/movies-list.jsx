@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MovieCard from '../movie-card/movie-card';
 
 function MoviesList(props) {
-  const { movies, visibilityFilter, favorites, user } = props;
+  const { movies, visibilityFilter, user } = props;
   let filteredMovies = movies;
 
 
@@ -21,7 +21,7 @@ function MoviesList(props) {
 
       {filteredMovies.map(m => (
         <Col xl={2} lg={3} sm={6} key={m._id} id='movie-card-main'>
-          <MovieCard movie={m} user={user} favorites={favorites} />
+          <MovieCard movie={m} user={user} />
         </Col>
       ))}
 
