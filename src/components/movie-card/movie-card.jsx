@@ -19,10 +19,11 @@ function MovieCard(props) {
   const token = localStorage.getItem('token');
 
   const addToFavoriteList = (movieId) => {
-    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, '', {
+    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
+        console.log('added' + response.data.favoriteMovies)
         setFavorites(response.data.favoriteMovies)
         alert(`The movie was successfully added to your list.`)
       }).
@@ -35,6 +36,7 @@ function MovieCard(props) {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
+
         setFavorites(favorites.filter(favId => favId != movieId))
         alert(`The movie was successfully deleted from your list.`)
       }).
@@ -49,7 +51,7 @@ function MovieCard(props) {
     } else {
       addToFavoriteList(movId);
     }
-    toggleFavorites(movId);
+    props.toggleFavorites(movId);
   }
 
   function iconHandle(movieId) {

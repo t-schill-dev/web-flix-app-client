@@ -99,7 +99,7 @@ class MainView extends React.Component {
 
             return (
 
-              <MoviesList movies={movies} user={user} />
+              <MoviesList />
 
             )
           }} />

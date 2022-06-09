@@ -11,7 +11,7 @@ import moviesApp from './reducers/reducers';
 import './index.scss';
 
 //Used createstore from redux instead using it from toolkit
-const store = legacy_createStore(moviesApp, devToolsEnhancer());
+const store = legacy_createStore(moviesApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 //Main component
 class WebFlixApplication extends React.Component {
   render() {
