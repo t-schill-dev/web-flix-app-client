@@ -5,7 +5,7 @@ import { Button, Row, Col } from 'react-bootstrap';
 import './profile-view.scss';
 //import redux modules
 import { connect } from 'react-redux';
-import { setUser, setFavorites } from '../../actions/actions';
+import { setUser, setFavorites, toggleFavorites } from '../../actions/actions';
 
 import { UserData } from './user-data';
 import { UpdateUser } from './update-user';
@@ -28,8 +28,6 @@ function ProfileView(props) {
       .then(res => {
         setuserdata(res.data);
         setFavorites(res.data.favoriteMovies);
-
-        console.log('favorites in get User:' + favorites);
       })
       .catch(err => {
 
@@ -82,6 +80,7 @@ function ProfileView(props) {
       .then(() => {
         setFavorites(favorites.filter(favId => favId != id));
         getUserData(user);
+        props.toggleFavorites(id);
       })
       .catch(e => {
         console.log(e)
@@ -127,7 +126,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  setFavorites, setUser
+  setFavorites, setUser, toggleFavorites
 })(ProfileView);
 ProfileView.propTypes = {
   userdata: PropTypes.shape({

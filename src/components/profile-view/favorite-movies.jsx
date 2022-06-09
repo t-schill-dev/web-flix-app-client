@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { setFavorites, setUser } from '../../actions/actions';
 import { connect } from 'react-redux';
 import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
-function FavoriteMovies({ removeFav, movies, favorites }) {
+function FavoriteMovies(props) {
+  const { removeFav, movies, favorites } = props;
 
-  console.log('state favorites in favMov: ' + favorites)
   const favoriteMoviesList = movies.filter(m => {
     return favorites.includes(m._id)
   })
