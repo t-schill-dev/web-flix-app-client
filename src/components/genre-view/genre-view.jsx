@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Carousel, Card } from 'react-bootstrap';
+import { Container, Col, Row, Button, Carousel, Card } from 'react-bootstrap';
 import './genre-view.scss';
 
 
@@ -16,11 +16,16 @@ export class GenreView extends React.Component {
         <Container >
           <Row >
             <Card id='genre-view'>
-              <div>
-                <Card.Header className='card-title'>{genreName}</Card.Header>
-
-                <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
-              </div>
+              <Row className='view-header'>
+                <Col md={10}>
+                  {genreName}
+                </Col>
+                <Col md={1}>
+                  <div >
+                    <Button id='return-button' onClick={() => { onBackClick(); }}>Back</Button>
+                  </div>
+                </Col>
+              </Row>
               <Card.Text className='text-muted subtitle'>More movies of the same genre:</Card.Text>
               <Carousel variant='dark' className='movie-carousel'>
                 {movies.map((movie) => {
@@ -40,9 +45,6 @@ export class GenreView extends React.Component {
               </Carousel>
             </Card>
           </Row>
-
-
-
         </Container>
       </>
     )

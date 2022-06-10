@@ -119,7 +119,7 @@ class MainView extends React.Component {
             )
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <Col md={8}>
+            return <Col md={10}>
               <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}
                 onBackClick={() => history.goBack()} addToFavoriteList={this.addToFavoriteList} />
             </Col>

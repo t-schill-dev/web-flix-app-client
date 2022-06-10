@@ -6,14 +6,12 @@ import MovieCard from '../movie-card/movie-card';
 
 function MoviesList(props) {
   const { movies, visibilityFilter, user } = props;
-  let filteredMovies = movies;
 
+  let filteredMovies = movies;
 
   if (visibilityFilter !== '') {
     filteredMovies = movies.filter(m => m.title.toLowerCase().includes(visibilityFilter.toLowerCase()));
-
   }
-
   if (!movies) return < div className='main-view' />;
 
   return (
