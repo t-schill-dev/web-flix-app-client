@@ -27,7 +27,7 @@ function MovieCard(props) {
         setFavorites(response.data.favoriteMovies)
         alert(`The movie was successfully added to your list.`)
       }).
-      catch(error => console.error(error))
+      catch(error => console.error(error.response.data))
   };
 
   const removeFromFavoriteList = (movieId) => {
