@@ -60,7 +60,7 @@ class MainView extends React.Component {
       .then((response) => {
         this.props.setFavorites(response.data.favoriteMovies);
       })
-      .catch((e) => console.log(e.response.data))
+      .catch((e) => console.log(e))
   }
 
   // Fetching the access token from local storage after element is on DOM
