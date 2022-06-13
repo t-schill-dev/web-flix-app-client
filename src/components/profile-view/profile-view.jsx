@@ -17,7 +17,7 @@ function ProfileView(props) {
   const { user, movies, favorites } = props;
 
   const [userdata, setuserdata] = useState({});
-  const [updatedUser, setUpdatedUser] = useState({ userdata });
+  const [updatedUser, setUpdatedUser] = useState({});
 
   let token = localStorage.getItem('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -71,10 +71,9 @@ function ProfileView(props) {
         .then((response) => {
           alert('Profile updated')
           setUpdatedUser(response.data)
-          localStorage.setItem('user', updatedUser.username)
         })
         .catch(e => {
-          console.log(e.response.data);
+          console.log(e);
         })
     }
   }
