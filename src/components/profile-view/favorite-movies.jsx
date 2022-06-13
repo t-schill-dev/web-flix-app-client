@@ -1,30 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Col, Row, Card, Button, Carousel } from 'react-bootstrap';
 
-export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
+function FavoriteMovies(props) {
 
-
-  const favoriteMoviesId = favoriteMovies.map(m => m._id)
+  //Declaring states as props from redux store through connect()
+  const { removeFav, movies, favorites } = props;
 
   const favoriteMoviesList = movies.filter(m => {
-    return favoriteMoviesId.includes(m._id)
+    return favorites.includes(m._id)
   })
-
   return (
     <>
       <Col>
         <Row>
-
           <Card className='bg-light'>
             <Card.Title className='text-dark' >Favorite Movies</Card.Title>
             <Carousel variant='dark' className='movie-carousel'>
               {favoriteMoviesList.length === 0 ? (
                 <p>You have no favorite movies yet</p>
               ) : (
+                //looping function over each item of the list
                 favoriteMoviesList.map(movie => {
                   return (
-
                     <Carousel.Item key={movie._id} className='text-center' >
                       <img
                         id='mini-movie-card_img'
@@ -32,19 +31,27 @@ export function FavoriteMovies({ favoriteMovies, removeFav, movies }) {
                         alt="movie poster"
                       />
                       <Link to={`/movies/${movie._id}`}>
-                        <Card.Subtitle variant='link' style={{ marginTop: 10 }}>{movie.title}</Card.Subtitle>
+                        <h6 style={{ marginTop: 10 }}>{movie.title}</h6>
                       </Link>
+                      <Button className='removeFav__button' variant='outline-danger' onClick={() => removeFav(movie._id)}>Remove from Favorites</Button>
                     </Carousel.Item>
-
                   )
                 })
               )
               }
             </Carousel>
-            <Button variant='outline-danger' onClick={() => removeFav(movies._id)}>Remove from Favorites</Button>
           </Card>
         </Row>
       </Col>
     </>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.favorites,
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(FavoriteMovies);

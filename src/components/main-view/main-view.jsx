@@ -2,46 +2,41 @@ import React from 'react';
 import axios from 'axios'; // promise-based HTTP client for ajax fetching
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setMovies, setFavorites, setUser } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view'
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { ProfileView } from '../profile-view/profile-view';
+import ProfileView from '../profile-view/profile-view';
 import { ActorsView } from '../actors-view/actors-view';
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
 
 
 
-export class MainView extends React.Component {
-  constructor(props) {
+class MainView extends React.Component {
+  constructor() {
     super();
-    this.state = {
-      movies: [],
-      user: props.user
-    }
+
   }
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.username
-    });
+    this.props.setUser(authData.user.username);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.username);
     this.getMovies(authData.token);
+    this.getFavorites(authData.token);
   }
 
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
+    this.props.setUser(null);
   }
   //Fetch data from database
   getMovies(token) {
@@ -49,45 +44,39 @@ export class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch((error) => {
         console.log(error);
       })
   };
-  // Fetching the access token from local storage
+
+  getFavorites(token) {
+    //User from redux store
+    let user = this.props.user;
+    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => {
+        this.props.setFavorites(response.data.favoriteMovies);
+      })
+      .catch((e) => console.log(e))
+  }
+
+  // Fetching the access token from local storage after element is on DOM
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
+
       this.getMovies(accessToken);
+      this.getFavorites(accessToken);
+
     }
   };
 
-  //Yet to be implemented in movie and card view 
-
-  // addToFavoriteList(movieId) {
-  //   const user = localStorage.getItem('user');
-  //   const token = localStorage.getItem('token');
-
-
-  //   axios.put(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then((response) => {
-  //       console.log(response.data)
-  //       alert(`The movie was successfully add to your list.`)
-  //     }).
-  //     catch(error => console.error(error))
-  // }
-
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user } = this.props;
 
     return (
       //Container already applied in index.jsx. One row only because condition allows only one possibility to render
@@ -109,11 +98,11 @@ export class MainView extends React.Component {
             )
             if (movies.length === 0) return <div className='main-view' />;
 
-            return movies.map(m => (
-              <Col md={3} sm={4} key={m._id} id='movie-card-main'>
-                <MovieCard movie={m} addToFavoriteList={this.addToFavoriteList} />
-              </Col>
-            ))
+            return (
+
+              <MoviesList />
+
+            )
           }} />
 
           {/*RegisterRoute*/}
@@ -131,7 +120,7 @@ export class MainView extends React.Component {
             )
             if (movies.length === 0) return <div className='main-view' />;
 
-            return <Col md={8}>
+            return <Col md={10}>
               <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}
                 onBackClick={() => history.goBack()} addToFavoriteList={this.addToFavoriteList} />
             </Col>
@@ -187,7 +176,7 @@ export class MainView extends React.Component {
 
             if (!user) return <Redirect to='/' />
             return <Col md={8}>
-              <ProfileView user={user} movies={movies}
+              <ProfileView movies={movies} user={user}
               />
             </Col>
           }} />
@@ -199,6 +188,20 @@ export class MainView extends React.Component {
   };
 }
 
+let mapStateToProps = state => {
+  return {
+    movies: state.movies,
+    favorites: state.favorites,
+    user: state.user
+  }
+}
+//connecting components to store
+export default connect(mapStateToProps, {
+  setMovies,
+  setFavorites,
+  setUser
+
+})(MainView);
 
 MainView.propTypes = {
   user: PropTypes.shape({

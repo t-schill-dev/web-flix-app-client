@@ -21,7 +21,10 @@ export function RegistrationView(props) {
 
   })
 
-  const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]{4,}@[a-zA-Z0-9-]{3}(?:\.[a-zA-Z0-9-]{2,3})*$/;
+  const validateEmail = (email) => {
+    const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return email.match(emailRegEx)
+  }
 
   const validate = () => {
     let isReq = true;
@@ -42,7 +45,7 @@ export function RegistrationView(props) {
     if (!email) {
       setValues({ ...values, emailErr: 'Email required' });
       isReq = false;
-    } else if (emailRegEx.test(email) === -1) {
+    } else if (validateEmail(email) === -1) {
       setValues({ ...values, emailErr: 'Email is invalid' })
       isReq = false;
     }

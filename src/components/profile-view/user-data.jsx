@@ -3,7 +3,6 @@ import { Col, Row, Card } from 'react-bootstrap'
 
 export function UserData(props) {
   const userdata = props.userdata;
-
   let birthDate = new Date(userdata.birthday);
   let user_iso_date = birthDate.toLocaleDateString();
 
