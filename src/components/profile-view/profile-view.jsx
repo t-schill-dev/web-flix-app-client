@@ -13,7 +13,7 @@ export function ProfileView(props) {
   const user = props.user;
   const movies = props.movies;
 
-  const [userdata, setuserdata] = useState({});
+  const [userdata, setUserdata] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
@@ -43,7 +43,7 @@ export function ProfileView(props) {
     e.preventDefault();
     axios.put(`https://web-flix-movies.herokuapp.com/users/${userdata.username}`, updatedUser)
       .then(response => {
-        setuserdata(response.data);
+        setUserdata(response.data);
         alert('Profile updated')
       })
       .catch(e => {
