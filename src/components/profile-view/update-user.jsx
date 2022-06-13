@@ -16,7 +16,7 @@ export function UpdateUser(props) {
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                   type='text'
-                  name='Username'
+                  name='username'
                   defaultValue={user.username}
                   onChange={e => handleUpdate(e)}
                 />
@@ -26,7 +26,7 @@ export function UpdateUser(props) {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                   type='text'
-                  name='Password'
+                  name='password'
                   placeholder="New Password (required when updating profile info)"
                   onChange={e => handleUpdate(e)}
                   required
@@ -37,7 +37,7 @@ export function UpdateUser(props) {
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                   type='text'
-                  name='Email'
+                  name='email'
                   defaultValue={user.email}
                   onChange={e => handleUpdate(e)}
                 />
