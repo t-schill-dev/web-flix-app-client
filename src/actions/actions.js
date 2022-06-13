@@ -3,6 +3,7 @@ export const SET_FILTER = 'SET_FILTER';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const TOGGLE_FAVORITES = 'TOGGLE_FAVORITES';
 export const SET_USER = 'SET_USER';
+export const SET_USER_DATA = 'SET_USER_DATA';
 
 //ACTION CREATOR
 export function setMovies(value) {
@@ -23,4 +24,8 @@ export function toggleFavorites(movieId) {
 
 export function setUser(user) {
     return { type: SET_USER, user };
+}
+
+export function setUserData(userData) {
+    return { type: SET_USER_DATA, userData};
 }
