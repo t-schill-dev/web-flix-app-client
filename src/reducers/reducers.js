@@ -4,7 +4,8 @@ import {
     SET_MOVIES,
     SET_FAVORITES,
     TOGGLE_FAVORITES,
-    SET_USER
+    SET_USER,
+    SET_USER_DATA
 } from '../actions/actions';
 
 //fitering movies
@@ -21,6 +22,15 @@ function movies(state = [], action) {
     switch (action.type) {
         case SET_MOVIES:
             return action.value;
+        default:
+            return state;
+    }
+}
+
+function userData(state = {}, action) {
+    switch(action.type) {
+        case SET_USER_DATA: 
+            return action.userData;
         default:
             return state;
     }
@@ -55,7 +65,8 @@ const moviesApp = combineReducers({
     visibilityFilter,
     movies,
     favorites,
-    user
+    user,
+    userData
 });
 
 
