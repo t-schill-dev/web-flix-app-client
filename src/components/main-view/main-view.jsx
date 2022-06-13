@@ -52,24 +52,25 @@ class MainView extends React.Component {
   };
 
   getFavorites(token) {
-
-    let user = localStorage.getItem('user');
+    //User from redux store
+    let user = this.props.user;
     axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
         this.props.setFavorites(response.data.favoriteMovies);
       })
-      .catch((e) => console.log(e))
+      .catch((e) => console.log(e.response.data))
   }
 
   // Fetching the access token from local storage after element is on DOM
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.props.setUser(localStorage.getItem('user'));
+
       this.getMovies(accessToken);
       this.getFavorites(accessToken);
+
     }
   };
 
@@ -199,6 +200,7 @@ export default connect(mapStateToProps, {
   setMovies,
   setFavorites,
   setUser
+
 })(MainView);
 
 MainView.propTypes = {
