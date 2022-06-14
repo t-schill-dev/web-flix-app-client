@@ -13,13 +13,10 @@ export function RegistrationView(props) {
   const [birthday, setBirthday] = useState('');
 
   // Use hook for error messages 
-  const [values, setValues] = useState({
-    usernameErr: '',
-    passwordErr: '',
-    emailErr: '',
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+  const [emailErr, setEmailErr] = useState('');
 
-
-  })
 
   const validateEmail = (email) => {
     const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,24 +26,24 @@ export function RegistrationView(props) {
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setValues({ ...values, usernameErr: 'Username required' });
+      setUsernameErr('Username required');
       isReq = false;
     } else if (username.length < 5) {
-      setValues({ ...values, username: 'Username must be 5 characters long' })
+      setUsernameErr('Username must be 5 characters long')
       isReq = false;
     }
     if (!password) {
-      setValues({ ...values, passwordErr: 'Password required' });
+      setPasswordErr('Password required');
       isReq = false;
     } else if (password.length < 6) {
-      setValues({ ...values, password: 'Password must be 6 characters long' })
+      setPasswordErr('Password must be 6 characters long')
       isReq = false;
     }
     if (!email) {
-      setValues({ ...values, emailErr: 'Email required' });
+      setEmailErr('Email required');
       isReq = false;
     } else if (validateEmail(email) === -1) {
-      setValues({ ...values, emailErr: 'Email is invalid' })
+      setEmailErr('Email is invalid')
       isReq = false;
     }
     return isReq;
@@ -54,17 +51,19 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const isReq = validate();
+    console.log('isReq:', isReq)
     if (isReq) {
       axios.post('https://web-flix-movies.herokuapp.com/users', {
         username: username,
         password: password,
         email: email,
         birthday: birthday
-
       })
         .then(response => {
           const data = response.data;
+          console.log(data);
           alert('Registration successful, please log in');
           window.open('/', '_self');
           //self opens page in current tab
@@ -95,7 +94,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter a username'>
                 </Form.Control>
-                {values.usernameErr && <p>{values.usernameErr}</p>}
+                {usernameErr && <p>{usernameErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password:*</Form.Label>
@@ -106,7 +105,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter a Password'>
                 </Form.Control>
-                {values.passwordErr && <p>{values.passwordErr}</p>}
+                {passwordErr && <p>{passwordErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Email:*</Form.Label>
@@ -117,7 +116,7 @@ export function RegistrationView(props) {
                   required
                   placeholder='Enter your email'>
                 </Form.Control>
-                {values.emailErr && <p>{values.emailErr}</p>}
+                {emailErr && <p>{emailErr}</p>}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Birthday:</Form.Label>
