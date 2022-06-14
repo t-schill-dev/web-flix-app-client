@@ -20,7 +20,7 @@ export function LoginView(props) {
       setUsernameErr('Username required');
       isReq = false;
     } else if (username.length < 2) {
-      setUsernameErr('Username must be 2 characters long');
+      setUsernameErr('Username must be 5 characters long');
       isReq = false;
     }
     if (!password) {
@@ -44,7 +44,7 @@ export function LoginView(props) {
         const data = response.data;
         /* Data including the token will be passed to parent component */
         props.onLoggedIn(data)
-          console.log('data: ', data);
+        console.log('data: ', data);
 
       })
         .catch(e => {
