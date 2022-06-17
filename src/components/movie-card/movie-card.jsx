@@ -111,9 +111,9 @@ export default connect(mapStateToProps, {
 
 MovieCard.propTypes = {
   movie: PropTypes.exact({
-    _id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    year: PropTypes.number,
+    year: PropTypes.number.isRequired,
     runtime: PropTypes.number,
     plot: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,

@@ -208,7 +208,7 @@ export default connect(mapStateToProps, {
 
 MainView.propTypes = {
   user: PropTypes.shape({
-    username: PropTypes.string,
+    username: PropTypes.object,
     password: PropTypes.string
   })
 };
