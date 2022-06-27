@@ -15,9 +15,6 @@ function ProfileView(props) {
   //Declaring states as props from redux store through connect()
   const { user, movies, favorites, userData } = props;
 
-  //const [userdata, setUserdata] = useState({});
-  //const [updatedUser, setUpdatedUser] = useState({});
-
   let token = localStorage.getItem('token');
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -50,14 +47,6 @@ function ProfileView(props) {
         console.log(err.response.data);
       })
   }
-  // const handleUpdate = (e) => {
-  //   setUpdatedUser({
-  //     ...updatedUser,
-  //     [e.target.name]: e.target.value
-  //   });
-
-
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,7 +67,6 @@ function ProfileView(props) {
       axios.put(`https://web-flix-movies.herokuapp.com/users/${user}`, newUserData)
         .then((response) => {
           alert('Profile updated')
-          // setUpdatedUser(response.data)
           setUserData(newUserData);
         })
         .catch(e => {
@@ -98,8 +86,6 @@ function ProfileView(props) {
     }
     return errors;
   }
-
-
 
   const deleteProfile = () => {
     axios.delete(`https://web-flix-movies.herokuapp.com/users/${userData.username}`)
