@@ -15,7 +15,7 @@ sans-serif;
 
 .view-header {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     padding: 5px;
     button {
         align-items: center;
@@ -26,38 +26,42 @@ sans-serif;
     margin-top: 15px;
 }
 
-#image-wrapper {}
-
-#movie-poster {
-    height: 450px;
-    padding: 5px;
-}
-
-.label {
-    font-weight: 600;
-    font-size: 1.2rem;
-    width: 50px;
-    padding: 10px 0;
-    margin-right: 30px;
+#image-wrapper {
+    padding: 10px;
+    img {
+        height: 400px;
+        width: auto;
+    }
 }
 
 .movie-details {
-    margin-top: 20px;
-    padding: 5px;
+    flex-direction: column;
+    padding: 10px;
 }
 
-//inactive
-.movie-link {
+.label {
+    display: inline;
+    font-weight: 600;
+    font-size: 1.2rem;
+    min-width: 100px;
+    margin-bottom: 10px;
+}
+
+.movie-value {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#movie-link {
+    color: $button-color;
     padding: 0;
-    margin: 0;
-    color: #E4E4E4;
-    background-color: #FFD700;
+    margin-right: 2px;
 }
 
 #return-button {
     background-color: $button-color;
     height: 30px;
-    width: auto;
+    width: 70px;
     padding: 3px;
     z-index: 10000;
     &:hover {

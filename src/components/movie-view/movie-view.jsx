@@ -21,59 +21,56 @@ export class MovieView extends React.Component {
             </div>
           </Col>
         </Row>
-        <Row className='view-box'>
+        <Row className='view-box d-flex'>
           < Col xs={12} lg={4} id='image-wrapper'>
-            <img id='movie-poster' src={movie.imageUrl} alt='Movie poster'></img>
+            <img id='movie-poster' src={movie.imageUrl} alt='Movie poster' />
           </Col >
-
-
-          <Col xs={12} lg={{ span: 8 }}>
-            <div className='movie-details'>
-              <div className='d-flex'>
-                <span className='label' htmlFor='runtime'>Runtime: </span>
-                <div>
-                  <span>{movie.runtime}</span>
-                </div>
+          <Col className='movie-details d-flex' xs={12} lg={{ span: 8 }}>
+            <div className='d-flex'>
+              <span className='label' htmlFor='runtime'>Runtime:</span>
+              <div className='movie-value'>
+                <span>{movie.runtime} min</span>
               </div>
-              <div>
-                <span className='label' htmlFor='director'>Director: </span>
+            </div>
+            <div className='d-flex'>
+              <span className='label' htmlFor='director'>Director:</span>
+              <div className='movie-value'>
                 <Link to={`/director/${movie.director.name}`}>
-                  <Button className='movie-link' variant='link'>{movie.director.name}</Button>
+                  <Button id='movie-link' variant='link'>{movie.director.name}</Button>
                 </Link>
               </div>
-              <div className='d-flex'>
-                <span className='label' htmlFor='actors'>Actors: </span>
-                <div className='movie-value'>
-                  {movie.actors.map((actor) => {
-                    return (
-                      <Link to={`/actors/${actor}`}>
-                        <Button variant='link' className='movie-link'>{actor}</Button>
-                      </Link>
-                    )
-                  })}
-                </div>
+            </div>
+            <div className='d-flex'>
+              <span className='label' htmlFor='actors'>Actors:</span>
+              <div className='movie-value'>
+                {movie.actors.map((actor) => {
+                  return (
+                    <Link to={`/actors/${actor}`}>
+                      <Button variant='link' id='movie-link'>{actor}</Button>
+                    </Link>
+                  )
+                })}
               </div>
-              <div className='d-flex'>
-                <span className='label' htmlFor='genres'>Genres:</span>
-                <div className='movie-value'>
-                  {movie.genres.map((genre) => {
-                    return (
-                      <Link to={`/genres/${genre}`}>
-                        <Button variant='link' className='movie-link'>{genre}</Button>
-                      </Link>
-                    )
-                  })}
-                </div>
+            </div>
+            <div className='d-flex'>
+              <span className='label' htmlFor='genres'>Genres:</span>
+              <div className='movie-value'>
+                {movie.genres.map((genre) => {
+                  return (
+                    <Link to={`/genres/${genre}`}>
+                      <Button variant='link' id='movie-link'>{genre}</Button>
+                    </Link>
+                  )
+                })}
               </div>
-              <div className='d-flex'>
-                <span className='label' htmlFor='plot'>Plot: </span>
-                <div>
-                  <span className='view-value'>{movie.plot}</span>
-                </div>
+            </div>
+            <div className='d-flex'>
+              <span className='label' htmlFor='plot'>Plot:</span>
+              <div className='movie-value'>
+                <span>{movie.plot}</span>
               </div>
             </div>
           </Col>
-
         </Row>
       </div >
     );
