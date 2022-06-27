@@ -113,7 +113,7 @@ MovieCard.propTypes = {
   movie: PropTypes.exact({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
+    year: PropTypes.number,
     runtime: PropTypes.number,
     plot: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
