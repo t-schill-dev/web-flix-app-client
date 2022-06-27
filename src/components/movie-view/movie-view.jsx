@@ -11,7 +11,7 @@ export class MovieView extends React.Component {
     return (
       <div id='movie-view'>
 
-        <Row className='view-header'>
+        <Row className='movie-header'>
           <Col id='movie-title' md={10}>
             {movie.title} ({movie.year})
           </Col>
