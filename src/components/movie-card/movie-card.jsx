@@ -84,7 +84,7 @@ function MovieCard(props) {
         />
       </a>
       <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
+        <Card.Title className='card-title'>{movie.title}</Card.Title>
         <Card.Subtitle className='text-muted'>{movie.year}</Card.Subtitle>
         <Card.Text>{movie.genres.map((genre) => genre + ' ')}</Card.Text>
         <Link to={`/movies/${movie._id}`}>

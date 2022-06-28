@@ -22,10 +22,10 @@ export class MovieView extends React.Component {
           </Col>
         </Row>
         <Row className='view-box d-flex'>
-          < Col xs={12} lg={4} id='image-wrapper'>
+          < Col xs={12} sm={6} lg={3} id='image-wrapper'>
             <img id='movie-poster' src={movie.imageUrl} alt='Movie poster' />
           </Col >
-          <Col className='movie-details d-flex' xs={12} lg={{ span: 8 }}>
+          <Col className='movie-details d-flex' xs={12} lg={{ offset: 1, span: 8 }} xl={{ offset: 1, span: 6 }}>
             <div className='d-flex'>
               <span className='label' htmlFor='runtime'>Runtime:</span>
               <div className='movie-value'>

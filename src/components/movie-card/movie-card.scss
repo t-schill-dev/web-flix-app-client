@@ -6,11 +6,15 @@ $underline-color: rgba(25, 200, 185, 0.8);
     border: solid 1px $underline-color;
     position: relative;
     overflow: hidden;
-    text-overflow: ellipsis;
+    // text-overflow: ellipsis;
     white-space: nowrap;
     .poster-wrapper>img {
         height: 350px;
     }
+}
+
+.card-title {
+    word-break: break-all;
 }
 
 #fav-icon {
