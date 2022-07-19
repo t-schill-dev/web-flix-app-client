@@ -3,7 +3,7 @@ import { Form, Button, Col, Row, Card } from 'react-bootstrap';
 
 export function UpdateUser(props) {
   const user = props.userdata;
-  const { handleSubmit, handleUpdate } = props;
+  const { handleSubmit } = props;
 
   return (
     <>
@@ -18,7 +18,6 @@ export function UpdateUser(props) {
                   type='text'
                   name='username'
                   defaultValue={user.username}
-                  onChange={e => handleUpdate(e)}
                 />
               </Form.Group>
 
@@ -28,7 +27,6 @@ export function UpdateUser(props) {
                   type='text'
                   name='password'
                   placeholder="New Password (required when updating profile info)"
-                  onChange={e => handleUpdate(e)}
                   required
                 />
               </Form.Group>
@@ -39,7 +37,6 @@ export function UpdateUser(props) {
                   type='text'
                   name='email'
                   defaultValue={user.email}
-                  onChange={e => handleUpdate(e)}
                 />
               </Form.Group>
               <Button variant="primary" type="submit">
