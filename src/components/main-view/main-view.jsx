@@ -42,7 +42,7 @@ class MainView extends React.Component {
   }
   //Fetch data from database
   getMovies(token) {
-    axios.get('https://web-flix-movies.herokuapp.com/movies', {
+    axios.get('https://tough-rose-khakis.cyclic.app/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -56,7 +56,7 @@ class MainView extends React.Component {
   getFavorites(token) {
     //User from redux store
     let user = this.props.user;
-    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, {
+    axios.get(`https://tough-rose-khakis.cyclic.app/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {

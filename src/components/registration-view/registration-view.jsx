@@ -55,7 +55,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     console.log('isReq:', isReq)
     if (isReq) {
-      axios.post('https://web-flix-movies.herokuapp.com/users', {
+      axios.post('https://tough-rose-khakis.cyclic.app/users', {
         username: username,
         password: password,
         email: email,

@@ -37,7 +37,7 @@ export function LoginView(props) {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
-      axios.post('https://web-flix-movies.herokuapp.com/login', {
+      axios.post('https://tough-rose-khakis.cyclic.app/login', {
         username: username,
         password: password
       }).then(response => {

@@ -19,7 +19,7 @@ function MovieCard(props) {
   const token = localStorage.getItem('token');
 
   const addToFavoriteList = (movieId) => {
-    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+    axios.post(`https://tough-rose-khakis.cyclic.app/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
@@ -32,7 +32,7 @@ function MovieCard(props) {
 
   const removeFromFavoriteList = (movieId) => {
 
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+    axios.delete(`https://tough-rose-khakis.cyclic.app/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
