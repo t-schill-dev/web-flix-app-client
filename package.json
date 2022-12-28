@@ -31,7 +31,9 @@
         "redux-devtools-extension": "^2.13.9"
     },
     "devDependencies": {
+        "@parcel/packager-raw-url": "^2.5.0",
         "@parcel/transformer-sass": "^2.5.0",
+        "@parcel/transformer-webmanifest": "^2.5.0",
         "buffer": "^6.0.3",
         "parcel": "^2.0.0-rc.0",
         "process": "^0.11.10"
