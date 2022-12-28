@@ -24,7 +24,9 @@ Install dependencies for meet-app with npm
 - Redux
 - Parcel 
 
-
+### Build
+For build run
+`` npx parcel src/index.html ``
 
 
 ## Screenshots

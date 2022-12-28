@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { NavbarView } from '../navbar-view/navbar-view';
 import './login-view.scss';
 
+import {baseURL} from '../main-view/main-view'
+
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +39,7 @@ export function LoginView(props) {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
-      axios.post('https://web-flix-movies.herokuapp.com/login', {
+      axios.post(`${baseURL}/login`, {
         username: username,
         password: password
       }).then(response => {

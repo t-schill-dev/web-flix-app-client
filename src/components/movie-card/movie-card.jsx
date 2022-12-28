@@ -13,13 +13,15 @@ import heartEmpty from '../../img/heart-empty.png';
 import heartFull from '../../img/heart-full.png';
 import './movie-card.scss';
 
+import {baseURL} from '../main-view/main-view'
+
 function MovieCard(props) {
   //Declaring states as props from redux store through connect()
   const { user, movie, favorites } = props;
   const token = localStorage.getItem('token');
 
   const addToFavoriteList = (movieId) => {
-    axios.post(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+    axios.post(`${baseURL}/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
@@ -32,7 +34,7 @@ function MovieCard(props) {
 
   const removeFromFavoriteList = (movieId) => {
 
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${movieId}`, {
+    axios.delete(`${baseURL}/users/${user}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {

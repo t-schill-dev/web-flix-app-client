@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { NavbarView } from '../navbar-view/navbar-view';
 import './registration-view.scss';
 
+import {baseURL} from '../main-view/main-view' 
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -55,7 +56,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     console.log('isReq:', isReq)
     if (isReq) {
-      axios.post('https://web-flix-movies.herokuapp.com/users', {
+      axios.post(`${baseURL}/users`, {
         username: username,
         password: password,
         email: email,

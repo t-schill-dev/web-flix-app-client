@@ -16,7 +16,7 @@ import { ActorsView } from '../actors-view/actors-view';
 import { Row, Col } from 'react-bootstrap';
 import './main-view.scss';
 
-
+export const baseURL = 'https://tough-rose-khakis.cyclic.app';
 
 class MainView extends React.Component {
   constructor() {
@@ -42,7 +42,7 @@ class MainView extends React.Component {
   }
   //Fetch data from database
   getMovies(token) {
-    axios.get('https://web-flix-movies.herokuapp.com/movies', {
+    axios.get(`${baseURL}/movies`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -56,7 +56,7 @@ class MainView extends React.Component {
   getFavorites(token) {
     //User from redux store
     let user = this.props.user;
-    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`, {
+    axios.get(`${baseURL}/users/${user}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {

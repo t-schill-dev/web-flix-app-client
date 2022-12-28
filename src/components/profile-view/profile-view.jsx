@@ -6,10 +6,10 @@ import './profile-view.scss';
 import { connect } from 'react-redux';
 import { setUser, setFavorites, toggleFavorites, setUserData } from '../../actions/actions';
 
+import {baseURL} from '../main-view/main-view'
 import { UserData } from './user-data';
 import { UpdateUser } from './update-user';
 import FavoriteMovies from './favorite-movies';
-
 
 function ProfileView(props) {
   //Declaring states as props from redux store through connect()
@@ -20,7 +20,7 @@ function ProfileView(props) {
 
   //Fetching userdata and updating state
   const getUserData = (user) => {
-    axios.get(`https://web-flix-movies.herokuapp.com/users/${user}`)
+    axios.get(`${baseURL}/users/${user}`)
       .then(res => {
         setUserData(res.data);
         setFavorites(res.data.favoriteMovies);
@@ -36,7 +36,7 @@ function ProfileView(props) {
   }, [])
 
   const isUser = (user) => {
-    axios.get('https://web-flix-movies.herokuapp.com/users')
+    axios.get(`${baseURL}/users`)
       .then(res => {
         let allUsers = res.data.map(user => user.username);
         console.log(allUsers.includes(user))
@@ -64,7 +64,7 @@ function ProfileView(props) {
       console.log('errors: ', errors);
     }
     else {
-      axios.put(`https://web-flix-movies.herokuapp.com/users/${user}`, newUserData)
+      axios.put(`${baseURL}/users/${user}`, newUserData)
         .then((response) => {
           alert('Profile updated')
           setUserData(newUserData);
@@ -88,7 +88,7 @@ function ProfileView(props) {
   }
 
   const deleteProfile = () => {
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${userData.username}`)
+    axios.delete(`${baseURL}/users/${userData.username}`)
       .then(() => {
         alert("Your profile has been deleted");
         localStorage.removeItem('user');
@@ -101,7 +101,7 @@ function ProfileView(props) {
   }
   //Function invoked by button in FavoriteMovies Component and updates state
   const removeFav = (id) => {
-    axios.delete(`https://web-flix-movies.herokuapp.com/users/${user}/movies/${id}`)
+    axios.delete(`${baseURL}/users/${user}/movies/${id}`)
       .then(() => {
         setFavorites(favorites.filter(favId => favId != id));
         getUserData(user);
