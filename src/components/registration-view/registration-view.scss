@@ -8,15 +8,20 @@ $dark-text: #1E263D;
 $font: 'Fredoka';
 .view-container {
     height: 100vh;
-    background-color: #E4E4E4;
+    background-image: url('../../img/movie-theater-picture.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
 }
 
 #registration-form {
-    margin-top: 100px;
-    background-color: $background-color;
-    color: $text-color;
+    flex-direction: row;
+    background-color: #E4E4E4;
+    color: $dark-text;
     font-family: $font;
-    width: 50%;
+    width: 50vw;
 }
 
 #register-btn_primary {
